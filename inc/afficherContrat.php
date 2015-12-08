@@ -19,7 +19,29 @@ function afficherListeContrats() {
 
 	}
 }
-function afficherParticipations() {
+
+function afficherMesPropositions() {
+
+	require "recupContrat.php";
+	$contrats = recupMesPropositions();
+
+	for ($i=0; $i < sizeof($contrats); $i++) {
+
+		echo '
+		<a id="lien_contrat" href="contrat.php?c='.$contrats[$i][0].'"><div class="contrat">
+			<header>
+				'.$contrats[$i][3].'
+			</header>
+			<p id="theme"><b>Thème :</b> '.$contrats[$i][4].'</p>
+			<p id="pers"><b>Proposeur :</b> '.$contrats[$i][2].' '.$contrats[$i][1].'</p>
+			<p id="comp"><b>Requis :</b> '.$contrats[$i][6].'</p>
+			<p id="remu"><b>Rémunération :</b> '.number_format($contrats[$i][5], 2, ',', ' ').' €</p>
+		</div></a>';
+
+	}
+}
+
+function afficherMesParticipations() {
 
 	require "recupContrat.php";
 	$contrats = recupParticipations();
@@ -39,6 +61,7 @@ function afficherParticipations() {
 
 	}
 }
+
 	function afficherDetailsContrats($idContrat) {
 		require "recupContrat.php";
 		$contrats = recupDetailsContrats($idContrat);

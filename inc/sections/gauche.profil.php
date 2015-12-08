@@ -44,7 +44,7 @@
 					<td colspan="2" id="contenu">					
 					<a href="index.php">Rechercher</a><br>
 					<a href="create.php">Proposer</a><br>
-					<a href="contrats.php">Mes propositions</a><br>
+					<a href="mes-propositions.php">Mes propositions</a><br>
 					<a href="participations.php">Mes participations</a><br>
 					<a href="candidatures.php">Candidatures</a><br>
 					<a href="">Effectués</a><br>
@@ -88,7 +88,7 @@
 					<td id="contenu">
 						<a href="index.php">Rechercher</a><br>
 						<a href="create.php">Proposer</a><br>
-						<a href="contrats.php">Mes propositions</a><br>
+						<a href="mes-propositions.php">Mes propositions</a><br>
 						<a href="">Mes participations</a><br>
 						<a href="candidatures.php">Candidatures</a><br>
 						<a href="">Effectués</a><br>

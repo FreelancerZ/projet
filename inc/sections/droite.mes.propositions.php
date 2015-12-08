@@ -6,7 +6,7 @@
         <article>
             <?php
             require "inc/afficherContrat.php";
-            afficherMesParticipations();
+            afficherMesPropositions();
             ?>
         </article>
     </div>
