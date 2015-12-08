@@ -468,6 +468,24 @@ textarea:focus {
 	color:#636363;
 }
 
+#message_ko {	/* texte d'information */
+	text-align:center;
+	color:#AE000C;
+	font-family: arial;
+	margin-top:20px;
+	font-size:0.8em;
+}
+
+#message_ko a {	/* texte d'information */
+	color:black;
+	font-family: arial;
+	text-decoration:none;
+}
+
+#message_ko a:hover {	/* texte d'information */
+	color:#636363;
+}
+
 
 /* Affichage d'un contrat */
 .affich_contrat {

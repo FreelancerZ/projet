@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Enregistre les modifications de l'édition des paramètres dans la BDD
  * @param  [type] $tab Tableau contenant toutes les données des champs du formulaire
@@ -89,7 +89,7 @@ function editerProfil($tab) {
 }
 
 function editerMdp($userMdp,$userMdpConf) {
-    include "bd/bdd.php";
+    include_once "bd/bdd.php";
 	if($userMdp === $userMdpConf) {
 		$mdpBD = md5($userMdp);
 	
@@ -103,13 +103,14 @@ function editerMdp($userMdp,$userMdpConf) {
 		$req->bindParam('id',$_SESSION['id']);
 
 		$req->execute();
+		return "<p id=\"message_ok\">Le mot de passe a bien été modifié.</p>";
 	} else {
-		//echo 'Les deux mots de passes ne correspondent pas';
+		return "<p id=\"message_ko\">Les deux mots de passes ne correspondent pas. Le mot de passe n'a pas était modifié</p>";
 	}
 }
 
 function editerEmail($userEmail) {
-    include "bd/bdd.php";
+    include_once "bd/bdd.php";
 	
 	// connexion à la BDD
 	$bdd = bdd();
@@ -121,6 +122,8 @@ function editerEmail($userEmail) {
 	$req->bindParam('id',$_SESSION['id']);
 
 	$req->execute();
+	
+	return "<p id=\"message_ok\">Le mail a bien été modifié.</p>";
 }
 
 function editerAvatar($userAvatar) {
