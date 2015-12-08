@@ -5,15 +5,15 @@
 			DETAILS
 		</header>
 		<article>
-			<form action="parametres.php" method="post" enctype="multipart/form-data">
-				Adresse email :
-				<input class="text" type="email" name="mail" /><br />
-				Mot de passe :
+			<form class="params" action="parametres.php" method="post" enctype="multipart/form-data">
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Adresse email : 
+				<input class="text" type="email" name="mail" size="30"/><br />
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Mot de passe : 
 				<input class="text" type="password" name="mdp" /><br />
 				Valider mot de passe :
 				<input class="text" type="password" name="mdpConf" /><br />
 				<br />
-				<input class="btn" type="submit" value="ENREGISTRER LES CHANGEMENTS">
+				<input id="btn_form" type="submit" value="ENREGISTRER LES CHANGEMENTS">
 			</form>
 		</article>
 	</div>

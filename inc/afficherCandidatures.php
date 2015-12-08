@@ -12,7 +12,7 @@ function afficherCandidatures() {
                     '.$candidatures[$i][5].'
                 </header>
                 <p id="theme"><b><a href="profil.php?p='.$candidatures[$i][1].'">'.$candidatures[$i][3].' '.$candidatures[$i][4].'</a></b> se propose
-                <a href="">Accepter</a> - <a href="">Refuser</a>
+                <a href="acceptCandid.php?p='.$candidatures[$i][0].'&rep=true" onclick="return alert(\'Le candidat est accepté.\')">Accepter</a> - <a href="acceptCandid.php?p='.$candidatures[$i][0].'&rep=false" onclick="return alert(\'Le candidat est refusé.\')">Refuser</a>
                 </p>
                 </div></a>
             ';

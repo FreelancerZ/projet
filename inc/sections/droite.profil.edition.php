@@ -5,7 +5,7 @@
 			DETAILS
 		</header>
 		<article>
-			<form action="editionprofil.php" method="post" enctype="multipart/form-data">
+			<form class="params" action="editionprofil.php" method="post" enctype="multipart/form-data">
 				Pseudonyme :
 				<input class="text" type="text" name="pseudo" /><br />
 				

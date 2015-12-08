@@ -4,7 +4,7 @@
  * @param  [type] $tab Tableau contenant toutes les données des champs du formulaire
  */
 function editerProfil($tab) {
-    include "bd/bdd.php";
+    include_once "bd/bdd.php";
 	$private = "Privée";
     // Si l'élément est vide, on indique "Non renseigné" dans la BD
     foreach ($tab as $valeur => $k) {
