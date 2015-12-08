@@ -54,7 +54,7 @@
     <label for="date_deb" >Date de début prévue : </label>
     </th>
     <td>
-        <input for="date_deb" placeholder="..." name="date_deb"><br>
+        <input for="date_deb" placeholder="aaaa-mm-jj" name="date_deb"><br>
     </td>
 </tr>
 <tr>
@@ -62,7 +62,7 @@
     <label for="date" >Date de fin prévue : </label>
     </th>
     <td>
-        <input for="date" placeholder="..." name="date_fin"><br>
+        <input for="date" placeholder="aaaa-mm-jj" name="date_fin"><br>
     </td>
 </tr>
 </table>
