@@ -105,7 +105,7 @@ function editerMdp($userMdp,$userMdpConf) {
 		$req->execute();
 		return "<p id=\"message_ok\">Le mot de passe a bien été modifié.</p>";
 	} else {
-		return "<p id=\"message_ko\">Les deux mots de passes ne correspondent pas. Le mot de passe n'a pas était modifié</p>";
+		return "<p id=\"message\">Les deux mots de passes ne correspondent pas. Le mot de passe n'a pas était modifié</p>";
 	}
 }
 
