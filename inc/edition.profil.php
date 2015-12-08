@@ -6,85 +6,99 @@
 function editerProfil($tab) {
     include_once "bd/bdd.php";
 	$private = "Privée";
-    // Si l'élément est vide, on indique "Non renseigné" dans la BD
+	
+    // Si l'élément est vide, on indique "" dans la BD
     foreach ($tab as $valeur => $k) {
 		
         if (empty($k)) {
-            $tab[$valeur] = "Non renseigné";
+            $tab[$valeur] = "";
         }
 	}
-        // contrôle du format du code postal
-        if (empty($tab['cp']) || !is_numeric($tab['cp']) || strlen($tab['cp']) != 5) {
-            $tab['cp'] = " ";
-        }
+        
+	// contrôle du format du code postal
+	if (empty($tab['cp']) || !is_numeric($tab['cp']) || strlen($tab['cp']) != 5) {
+		$tab['cp'] = "";
+	}
 	
-        // connxion à la BDD
-        $bdd = bdd();
+	// connxion à la BDD
+	$bdd = bdd();
 
-        // enregistrement des modifications dans la BDD privée
-        $sql = "UPDATE users_privee SET user_pseudo = :pseudo, user_ville = :ville, user_adresse = :adresse, user_cp = :cp, user_competences = :competences, user_site1 = :site1, user_site2 = :site2, user_site3 = :site3, user_site4 = :site4 WHERE user_id = :id";
-        $req = $bdd->prepare($sql);
-		$req->bindParam(':pseudo',$tab['pseudo']);
-        $req->bindParam(':ville',$tab['ville']);
-        $req->bindParam(':adresse',$tab['adresse']);
-        $req->bindParam(':cp',$tab['cp']);
-        $req->bindParam(':competences',$tab['competences']);
-        $req->bindParam(':site1',$tab['site1']);
-        $req->bindParam(':site2',$tab['site2']);
-        $req->bindParam(':site3',$tab['site3']);
-        $req->bindParam(':site4',$tab['site4']);
-        $req->bindParam('id',$_SESSION['id']);
-
-        $req->execute();
+	// enregistrement des modifications dans la BDD privée
+	$sql = "UPDATE users_privee SET user_pseudo = :pseudo, user_ville = :ville, user_adresse = :adresse, user_cp = :cp, user_competences = :competences, user_site1 = :site1, user_site2 = :site2, user_site3 = :site3, user_site4 = :site4 WHERE user_id = :id";
+	$req = $bdd->prepare($sql);
+	$req->bindParam(':pseudo',$tab['pseudo']);
+	$req->bindParam(':ville',$tab['ville']);
+	$req->bindParam(':adresse',$tab['adresse']);
+	$req->bindParam(':cp',$tab['cp']);
+	$req->bindParam(':competences',$tab['competences']);
+	$req->bindParam(':site1',$tab['site1']);
+	$req->bindParam(':site2',$tab['site2']);
+	$req->bindParam(':site3',$tab['site3']);
+	$req->bindParam(':site4',$tab['site4']);
+	$req->bindParam('id',$_SESSION['id']);
+	
+	$tab['site1'] = checkAdress($tab['site1']);
+	$tab['site2'] = checkAdress($tab['site2']);
+	$tab['site3'] = checkAdress($tab['site3']);
+	$tab['site4'] = checkAdress($tab['site4']);
+	
+	$req->execute();
 		
-		// enregistrement des modifications dans la BDD public
-        $sql = "UPDATE users SET user_pseudo = :pseudo, user_ville = :ville, user_adresse = :adresse, user_cp = :cp, user_competences = :competences, user_site1 = :site1, user_site2 = :site2, user_site3 = :site3, user_site4 = :site4 WHERE user_id = :id";
-        $req = $bdd->prepare($sql);
-		$req->bindParam(':pseudo',$tab['pseudo']);
-		if(isset($tab['villePv'])) {
-			$req->bindParam(':ville',$private);
-		} else {
-			$req->bindParam(':ville',$tab['ville']);
-		}
-        if(isset($tab['adressePv'] )) {
-			$req->bindParam(':adresse',$private);
-		} else {
-			$req->bindParam(':adresse',$tab['adresse']);
-		}
-		if(isset($tab['cpPv'])) {
-			$req->bindParam(':cp',$private);
-		}else {
-			$req->bindParam(':cp',$tab['cp']);
-		}	
-        if(isset($tab['competencesPv'])) {
-			$req->bindParam(':competences',$private);
-		} else {
-			$req->bindParam(':competences',$tab['competences']);
-		}     
-        if(isset($tab['site1Pv'])) {
-			$req->bindParam(':site1',$private);
-		} else {
-			$req->bindParam(':site1',$tab['site1']);
-		}
-        if(isset($tab['site2Pv'])) {
-			$req->bindParam(':site2',$private);
-		} else {
-			$req->bindParam(':site2',$tab['site2']);
-		}
-		if(isset($tab['site3Pv'])) {
-			$req->bindParam(':site3',$private);
-		} else {
-			$req->bindParam(':site3',$tab['site3']);
-		}
-		if(isset($tab['site4Pv'])) {
-			$req->bindParam(':site4',$private);
-		} else {
-			$req->bindParam(':site4',$tab['site4']);
-		} 
-        $req->bindParam('id',$_SESSION['id']);
+	// enregistrement des modifications dans la BDD public
+	$sql = "UPDATE users SET user_pseudo = :pseudo, user_ville = :ville, user_adresse = :adresse, user_cp = :cp, user_competences = :competences, user_site1 = :site1, user_site2 = :site2, user_site3 = :site3, user_site4 = :site4 WHERE user_id = :id";
+	$req = $bdd->prepare($sql);
+	$req->bindParam(':pseudo',$tab['pseudo']);
+	if(isset($tab['villePv'])) {
+		$req->bindParam(':ville',$private);
+	} else {
+		$req->bindParam(':ville',$tab['ville']);
+	}
+	if(isset($tab['adressePv'] )) {
+		$req->bindParam(':adresse',$private);
+	} else {
+		$req->bindParam(':adresse',$tab['adresse']);
+	}
+	if(isset($tab['cpPv'])) {
+		$req->bindParam(':cp',$private);
+	}else {
+		$req->bindParam(':cp',$tab['cp']);
+	}	
+	if(isset($tab['competencesPv'])) {
+		$req->bindParam(':competences',$private);
+	} else {
+		$req->bindParam(':competences',$tab['competences']);
+	}     
+	if(isset($tab['site1Pv'])) {
+		$req->bindParam(':site1',$private);
+	} else {
+		$req->bindParam(':site1',$tab['site1']);
+	}
+	if(isset($tab['site2Pv'])) {
+		$req->bindParam(':site2',$private);
+	} else {
+		$req->bindParam(':site2',$tab['site2']);
+	}
+	if(isset($tab['site3Pv'])) {
+		$req->bindParam(':site3',$private);
+	} else {
+		$req->bindParam(':site3',$tab['site3']);
+	}
+	if(isset($tab['site4Pv'])) {
+		$req->bindParam(':site4',$private);
+	} else {
+		$req->bindParam(':site4',$tab['site4']);
+	} 
+	$req->bindParam('id',$_SESSION['id']);
+	
+	$tab['site1'] = checkAdress($tab['site1']);
+	$tab['site2'] = checkAdress($tab['site2']);
+	$tab['site3'] = checkAdress($tab['site3']);
+	$tab['site4'] = checkAdress($tab['site4']);
+	
+	$req->execute();
 
-        $req->execute();
-    
+	$_SESSION['pseudo'] = $tab['pseudo'];
+	
     return $tab; //var_dump($tab)
 }
 
@@ -105,7 +119,7 @@ function editerMdp($userMdp,$userMdpConf) {
 		$req->execute();
 		return "<p id=\"message_ok\">Le mot de passe a bien été modifié.</p>";
 	} else {
-		return "<p id=\"message\">Les deux mots de passes ne correspondent pas. Le mot de passe n'a pas était modifié</p>";
+		return "<p id=\"message\">Les deux mots de passes ne correspondent pas. Le mot de passe n'a pas été modifié</p>";
 	}
 }
 
@@ -126,6 +140,18 @@ function editerEmail($userEmail) {
 	return "<p id=\"message_ok\">Le mail a bien été modifié.</p>";
 }
 
+function checkAdress($adress) {
+	
+	if (empty($adress) || $adress == "") {
+		return $adress;	
+	} else if (substr($adress, 0, 7) != 'http://' && substr($adress, 0, 8) != 'https://') {
+		return "http://".$adress;
+	} else {
+		return $adress;		
+	}
+	
+}
+
 function editerAvatar($userAvatar) {
 	$tabExt = array('jpg','png','gif');
 	$extension = pathinfo($userAvatar['name'], PATHINFO_EXTENSION);
@@ -138,20 +164,17 @@ function editerAvatar($userAvatar) {
 		$mlargeur = 400;
 		$mhauteur = 400;
 		
-		
 		// On récupère les dimensions de l'image
 		$dimension=getimagesize($avatarOriginal);
 		
-		
-		// On cré une image à partir du fichier récup
+		// On crée une image à partir du fichier récup
 		if(substr(strtolower($avatarOriginal),-4)==".jpg"){$avatarOriginal = imagecreatefromjpeg($avatarOriginal); }
 		else if(substr(strtolower($avatarOriginal),-4)==".png"){$avatarOriginal = imagecreatefrompng($avatarOriginal); }
 		else if(substr(strtolower($avatarOriginal),-4)==".gif"){$avatarOriginal = imagecreatefromgif($avatarOriginal); }
 		// L'image ne peut etre redimensionne
 		else{return false; }
 		
-		
-		// On cré une image vide de la largeur et hauteur voulue
+		// On crée une image vide de la largeur et hauteur voulue
 		$image =imagecreatetruecolor ($mlargeur,$mhauteur); 
 		// On va gérer la position et le redimensionnement de la grande image
 		if($dimension[0]>($mlargeur/$mhauteur)*$dimension[1] ){ $dimY=$mhauteur; $dimX=$mhauteur*$dimension[0]/$dimension[1]; $decalX=-($dimX-$mlargeur)/2; $decalY=0;}

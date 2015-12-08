@@ -172,7 +172,6 @@ nav {
 	/* 	   T   R   B   L    */
 	text-align:center;
 	margin-bottom:40px;
-
 }
 .leftpart {
 	float:left;
@@ -545,6 +544,8 @@ textarea:focus {
 	text-decoration:none;
 	color:#FA5D32;
 	width:auto;
+	margin-bottom:0px;
+	margin-top:20px;
 	transition-duration:0s;
 }
 #btn_form:hover{
@@ -616,7 +617,6 @@ textarea:focus {
 	transition-duration:0.3s;
 }
 #btn_creer2:hover {
-
 	cursor:pointer;
 	background-color:rgba(42,42,42,0);
 	border:3px solid #FA5D32;
@@ -646,6 +646,51 @@ textarea:focus {
 			#FB7D5B
 		-	#FA5D32*/
 	
+	
+	
+/* Modifications du Profil */
+.form_edition_profil table {
+	width:100%;
+}
+.form_edition_profil input{
+	text-align:left;
+	background-color:white;
+	border: 1px solid white;
+	font-family: "FRAMDCN", Helvetica, Arial, sans-serif;
+	color:#636363;
+	padding:2px 5px 2px 5px;
+	font-size:1em;
+	border-radius:3px;
+	margin:2px;
+	width:auto;
+	background-color:#f2f2f2;
+	width:95%;
+	transition-duration:0.3s;
+}
+
+.form_edition_profil input:focus{
+	background-color:#f2f2f2;
+    border: 1px solid #424242;
+	color:#424242;
+}
+#formprofil_lbl {
+	text-align:right;
+}
+#cbx {
+	text-align:right;
+}
+#avatar {
+	margin:0px;
+	padding:0px;
+	font-size:0.9em;
+	background-color:white;
+	border:none;
+}
+#avatar:focus {
+	border:none;
+}
+
+
 /* reste */
 article {
 	margin:0px 10px 0px 10px; /* marges latérales intérieures pour le texte des contenants */

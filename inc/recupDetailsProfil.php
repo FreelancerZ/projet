@@ -5,7 +5,7 @@
  */
 function recupDetailsProfil($idUser) {
     $details = array();
-    require "bd/bdd.php";
+    include_once "bd/bdd.php";
     $bdd = bdd();
 
     $req = $bdd->prepare("SELECT user_nom, user_prenom, user_ville, user_adresse, user_cp, user_email,
