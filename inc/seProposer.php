@@ -12,18 +12,18 @@ function creerProposition($idContrat, $tab) {
     $sujet = "[Freelancerz] : Candidature pour votre contrat" ;
     $entete = "From: noreply@freelancerZ.com" ;
 
+	// Ne pas toucher l'indentation (sinon moche dans le mail)
     $contenu = 'Bonjour,
-	Une personne c\'est proposé pour votre contrat \"'.$tabInfosContrat[0].'\".
-	Vous avez désormais accès à la partie privée de son profil.
-	Voici sa candidature :
-	---------------
-
+Une personne s\'est proposée pour votre contrat "'.$tabInfosContrat[0].'".
+Vous avez désormais accès à la partie privée de son profil.
+Voici sa candidature :
+---------------
 	
-    '.$tab['desc'].'
+'.$tab['desc'].'
 
-
-    ---------------
-    Ceci est un mail généré via formulaire, Merci de ne pas y répondre.';
+---------------
+Vous pouvez accepter ou refuser cette candidature ici : http://127.0.0.1/FreelancerZ/projet/candidatures.php.
+Ceci est un mail généré via formulaire, Merci de ne pas y répondre.';
 
     @mail($destinataire, $sujet, $contenu, $entete);
 	
