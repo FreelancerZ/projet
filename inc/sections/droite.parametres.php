@@ -7,7 +7,7 @@
 				Valider mot de passe :
 				<input class="text" type="password" name="mdpConf" /><br />
 				<br />
-				<input id="btn_form" type="submit" value="ENREGISTRER LES CHANGEMENTS">
+				<div style="width:100%; text-align:center;"><input id="btn_form" type="submit" value="ENREGISTRER LES CHANGEMENTS"><div>
 			</form>
 		</article>
 	</div>
