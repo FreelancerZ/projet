@@ -1,10 +1,4 @@
 
-<div class="rightpart">
-	<div class="right">
-		<header class="head_div">
-			DETAILS
-		</header>
-		<article>
 			<form class="params" action="parametres.php" method="post" enctype="multipart/form-data">
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Adresse email : 
 				<input class="text" type="email" name="mail" size="30"/><br />

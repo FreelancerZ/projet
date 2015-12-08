@@ -15,7 +15,7 @@ function editerProfil($tab) {
 	}
         // contrôle du format du code postal
         if (empty($tab['cp']) || !is_numeric($tab['cp']) || strlen($tab['cp']) != 5) {
-            $tab['cp'] = "Non renseigné";
+            $tab['cp'] = " ";
         }
 	
         // connxion à la BDD
