@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 session_start();
 // si l'user n'est pas connecté, alors on le redirige vers la page de connexion
 
