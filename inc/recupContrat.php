@@ -26,14 +26,17 @@ function recupContrats() {
 		$pa = 1;
 	}
 
-	echo '<span>';
-	for ($p=1; $p<=$nbp; $p++) {
-		if ($p == $pa) {
-			$page = $p==1?' '.$p.' ':'&nbsp '.$p.' ';
-			echo $page;
-		} else {
-			$page = $p==1?' <a href="index.php?page='.$p.'" >'.$p.'</a> ':'&nbsp <a href="index.php?page='.$p.'" >'.$p.'</a> ';
-			echo $page;
+	echo '<span id="pagination">';	
+	if ($nbp > 0) {
+		echo '&nbsp&nbsp&nbspPage(s) :  ';
+		for ($p=1; $p<=$nbp; $p++) {
+			if ($p == $pa) {
+				$page = $p==1?' '.$p.' ':'&nbsp '.$p.' ';
+				echo $page;
+			} else {
+				$page = $p==1?' <a href="index.php?page='.$p.'" >'.$p.'</a> ':'&nbsp <a href="index.php?page='.$p.'" >'.$p.'</a> ';
+				echo $page;
+			}
 		}
 	}
 	echo '</span>';
@@ -117,17 +120,20 @@ function recupMesPropositions() {
         $pa = 1;
     }
 
-    echo '<span>';
-    for ($p=1; $p<=$nbp; $p++) {
-        if ($p == $pa) {
-            $page = $p==1?' '.$p.' ':'&nbsp '.$p.' ';
-            echo $page;
-        } else {
-            $page = $p==1?' <a href="contrats.php?page='.$p.'" >'.$p.'</a> ':'&nbsp <a href="contrats.php?page='.$p.'" >'.$p.'</a> ';
-            echo $page;
-        }
-    }
-    echo '</span>';
+	echo '<span id="pagination">';	
+	if ($nbp > 0) {
+		echo '&nbsp&nbsp&nbspPage(s) :  ';
+		for ($p=1; $p<=$nbp; $p++) {
+			if ($p == $pa) {
+				$page = $p==1?' '.$p.' ':'&nbsp '.$p.' ';
+				echo $page;
+			} else {
+				$page = $p==1?' <a href="index.php?page='.$p.'" >'.$p.'</a> ':'&nbsp <a href="index.php?page='.$p.'" >'.$p.'</a> ';
+				echo $page;
+			}
+		}
+	}
+	echo '</span>';
     // FIN PAGINATION ---------------------------------------------------------------------------
 
     $req = $bdd->prepare("SELECT contrat_id, user_nom, user_prenom, contrat_titre, contrat_theme, contrat_montant, contrat_competences
@@ -174,17 +180,22 @@ function recupParticipations() {
         $pa = 1;
     }
 
-    echo '<span>';
-    for ($p=1; $p<=$nbp; $p++) {
-        if ($p == $pa) {
-            $page = $p==1?' '.$p.' ':'&nbsp '.$p.' ';
-            echo $page;
-        } else {
-            $page = $p==1?' <a href="contrats.php?page='.$p.'" >'.$p.'</a> ':'&nbsp <a href="contrats.php?page='.$p.'" >'.$p.'</a> ';
-            echo $page;
-        }
-    }
-    echo '</span>';
+	echo '<span id="pagination">';	
+	if ($nbp > 0) {
+		echo '&nbsp&nbsp&nbspPage(s) :  ';
+		for ($p=1; $p<=$nbp; $p++) {
+			if ($p == $pa) {
+				$page = $p==1?' '.$p.' ':'&nbsp '.$p.' ';
+				echo $page;
+			} else {
+				$page = $p==1?' <a href="index.php?page='.$p.'" >'.$p.'</a> ':'&nbsp <a href="index.php?page='.$p.'" >'.$p.'</a> ';
+				echo $page;
+			}
+		}
+	}
+	echo '</span>';
+	
+	
     // FIN PAGINATION ---------------------------------------------------------------------------
 
     $req = $bdd->prepare("SELECT contrat_id, user_nom, user_prenom, contrat_titre, contrat_theme, contrat_montant, contrat_competences
@@ -207,4 +218,67 @@ function recupParticipations() {
 	}
 }
 
+/**
+ * Récupère tous les contrats fermés stockés dans la base de données
+ * @return Un tableau [][] contenant les informations nécessaires à l'affichage
+ */
+function recupHistorique() {
+    $contrats = array();
+    require "bd/bdd.php";
+    $bdd = bdd();
+
+	// PAGINATION ---------------------------------------------------------------------------
+	$req = $bdd->prepare("SELECT count(*) as nbContrats FROM historique_contrat LEFT JOIN users ON user_id = histo_prestataire
+						  WHERE histo_prestataire = :id");
+	$req->bindParam(":id",$_SESSION["id"]);
+    $req->execute();
+    $data = $req->fetch();
+
+	$nbc = $data['nbContrats'];	// nombre total de contrats
+	$cpp = 4;					// nombre de contrats affichés par pages
+	$nbp = ceil($nbc/$cpp);		// nombre total de pages à afficher
+	$pa = 1;					// numéro de page actuelle
+
+	if (isset($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $nbp) {
+		$pa = $_GET['page'];
+	} else {
+		$pa = 1;
+	}
+
+	echo '<span id="pagination">';	
+	if ($nbp > 0) {
+		echo '&nbsp&nbsp&nbspPage(s) :  ';
+		for ($p=1; $p<=$nbp; $p++) {
+			if ($p == $pa) {
+				$page = $p==1?' '.$p.' ':'&nbsp '.$p.' ';
+				echo $page;
+			} else {
+				$page = $p==1?' <a href="index.php?page='.$p.'" >'.$p.'</a> ':'&nbsp <a href="index.php?page='.$p.'" >'.$p.'</a> ';
+				echo $page;
+			}
+		}
+	}
+	echo '</span>';
+	// FIN PAGINATION ---------------------------------------------------------------------------
+
+    $req = $bdd->prepare("SELECT historique_contrat.*, users.user_pseudo AS pseudo_dem, users_privee.user_pseudo AS pseudo_prest
+						  FROM historique_contrat JOIN users ON user_id = histo_demandeur JOIN users_privee ON privee_id = histo_prestataire
+						  WHERE histo_prestataire = :id
+						  ORDER BY histo_date_fin DESC LIMIT ".($pa-1)*$cpp.",".$cpp."");
+    $req->bindParam(":id",$_SESSION["id"]);
+	$req->execute();
+	
+    $i = 0;
+	$contrats = null;
+    while ($data = $req->fetch()) {
+        $contrats[$i] = array($data['histo_contrat'], $data['histo_titre'], $data['pseudo_dem'], $data['pseudo_prest'], $data['histo_desc'], $data['histo_demandeur'], $data['histo_prestataire'], $data['histo_date_deb'], $data['histo_date_fin'], $data['histo_theme'], $data['histo_montant'], $data['histo_competences']);
+        $i++;
+    }
+    
+	if ($contrats == null) {
+		return -1;
+	} else {
+		return $contrats;
+	}
+}
 ?>
