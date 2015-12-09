@@ -7,7 +7,7 @@ if (!isset($_SESSION['nom'])) {
 }
 require "inc/edition.profil.php";
 
-if ((isset($_POST) && !empty($_POST) && ($_POST != "")) {
+if ((isset($_POST) && !empty($_POST) && ($_POST != ""))) {
 	editerProfil($_POST);
 }
 
