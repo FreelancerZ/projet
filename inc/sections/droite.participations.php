@@ -1,7 +1,7 @@
 <div class="rightpart">
     <div class="right">
         <header class="head_div">
-            CONTRATS
+            CONTRATS AUXQUELS JE PARTICIPE
         </header>
         <article>
             <?php

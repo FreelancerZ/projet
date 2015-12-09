@@ -1,7 +1,7 @@
 <div class="rightpart">
     <div class="right">
         <header class="head_div">
-            CONTRATS
+            MES CONTRATS
         </header>
         <article>
             <?php

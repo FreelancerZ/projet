@@ -121,14 +121,19 @@ function recupMesPropositions() {
     $req = $bdd->prepare("SELECT contrat_id, user_nom, user_prenom, contrat_titre, contrat_theme, contrat_montant, contrat_competences
         FROM contrat LEFT JOIN users ON user_id = contrat_auteur WHERE contrat_etat != 2 AND contrat_auteur = '{$_SESSION['id']}' ORDER BY contrat_publication DESC  LIMIT ".($pa-1)*$cpp.",".$cpp."");
     $req->execute();
+	
     $i = 0;
+	$contrats = null;
     while ($data = $req->fetch()) {
         $contrats[$i] = array($data['contrat_id'], $data['user_nom'], $data['user_prenom'], $data['contrat_titre'], $data['contrat_theme'], $data['contrat_montant'], $data['contrat_competences']);
         $i++;
     }
-
-
-    return $contrats;
+	
+	if ($contrats == null) {
+		return -1;
+	} else {
+		return $contrats;
+	}
 }
 
  /**
@@ -175,14 +180,19 @@ function recupParticipations() {
 		WHERE contrat_etat != 2 AND prop_user = :id ORDER BY contrat_publication DESC  LIMIT ".($pa-1)*$cpp.",".$cpp."");
 	$req->bindParam(":id", $_SESSION['id']);
     $req->execute();
+	
     $i = 0;
+	$contrats = null;
     while ($data = $req->fetch()) {
         $contrats[$i] = array($data['contrat_id'], $data['user_nom'], $data['user_prenom'], $data['contrat_titre'], $data['contrat_theme'], $data['contrat_montant'], $data['contrat_competences']);
         $i++;
     }
-
-
-    return $contrats;
+	
+	if ($contrats == null) {
+		return -1;
+	} else {
+		return $contrats;
+	}
 }
 
 ?>
