@@ -9,7 +9,9 @@ function recupContrats() {
     $bdd = bdd();
 
 	// PAGINATION ---------------------------------------------------------------------------
-	$req = $bdd->prepare("SELECT count(*) as nbContrats FROM contrat LEFT JOIN users ON user_id = contrat_auteur WHERE contrat_etat = 0");
+	$req = $bdd->prepare("SELECT count(*) as nbContrats FROM contrat LEFT JOIN users ON user_id = contrat_auteur
+						  WHERE contrat_etat = 0 AND contrat_auteur != :id");
+	$req->bindParam(":id",$_SESSION["id"]);
     $req->execute();
     $data = $req->fetch();
 
@@ -38,14 +40,24 @@ function recupContrats() {
 	// FIN PAGINATION ---------------------------------------------------------------------------
 
     $req = $bdd->prepare("SELECT contrat_id, user_nom, user_prenom, contrat_titre, contrat_theme, contrat_montant, contrat_competences
-        FROM contrat LEFT JOIN users ON user_id = contrat_auteur WHERE contrat_etat = 0 ORDER BY contrat_publication DESC  LIMIT ".($pa-1)*$cpp.",".$cpp."");
-    $req->execute();
+						  FROM contrat LEFT JOIN users ON user_id = contrat_auteur
+						  WHERE contrat_auteur != :id
+						  AND contrat_etat = 0 ORDER BY contrat_publication DESC  LIMIT ".($pa-1)*$cpp.",".$cpp."");
+    $req->bindParam(":id",$_SESSION["id"]);
+	$req->execute();
+	
     $i = 0;
+	$contrats = null;
     while ($data = $req->fetch()) {
         $contrats[$i] = array($data['contrat_id'], $data['user_nom'], $data['user_prenom'], $data['contrat_titre'], $data['contrat_theme'], $data['contrat_montant'], $data['contrat_competences']);
         $i++;
     }
-    return $contrats;
+    
+	if ($contrats == null) {
+		return -1;
+	} else {
+		return $contrats;
+	}
 }
 
 /**
