@@ -10,7 +10,7 @@ function editerProfil($tab) {
     // Si l'élément est vide, on indique "" dans la BD
     foreach ($tab as $valeur => $k) {
 		
-        if (empty($k)) {
+        if (empty($k) || $k == null) {
             $tab[$valeur] = "";
         }
 	}

@@ -54,7 +54,7 @@ function afficherEditionProfil() {
 		<input class=\"btn\" type=\"submit\" value=\"ENREGISTRER LES CHANGEMENTS\">
 	</form>
 	*/
-	
+	var_dump($tab2);
 	echo "
 	<form class=\"form_edition_profil\" action=\"editionprofil.php\" method=\"post\" enctype=\"multipart/form-data\">
 		<table>
