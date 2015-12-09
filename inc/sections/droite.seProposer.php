@@ -18,7 +18,7 @@
 						</td>
 					</tr>
 				</table>
-                <input id="btn_creer" type="submit" value="Se proposer">
+                <input id="btn_creer" type="submit" value="SE PROPOSER">
                 </form>
 				<?php
 					if (isset($_POST) && !empty($_POST) && isset($_GET['c']) && is_numeric($_GET['c'])) {

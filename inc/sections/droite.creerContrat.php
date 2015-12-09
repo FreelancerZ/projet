@@ -66,7 +66,7 @@
     </td>
 </tr>
 </table>
-<input id="btn_creer" type="submit" value="Publier">
+<input id="btn_creer" type="submit" value="PUBLIER">
 </form>
 <?php
 if (isset($_POST) && !empty($_POST)) {

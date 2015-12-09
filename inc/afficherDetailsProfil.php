@@ -8,9 +8,13 @@ function afficherDetailsProfil($idUser) {
 	
 	$tab = recupDetailsProfil($idUser);
 	
-	echo "<div class=\"profil_infos\">
-        <img src=\"images/profil/$idUser.jpg\" alt=\"Avatar\" height=\"150\" onError=\"this.onerror=null;this.src='images/profil/unselected.jpg';\"><br>
-        <b>Pseudo : </b>".$tab[13]."<br>
+	echo "<div class=\"profil_infos\">";
+       
+	if ($_SESSION['id'] != $idUser) {   
+	   echo "<img src=\"images/profil/$idUser.jpg\" alt=\"Avatar\" height=\"150\" onError=\"this.onerror=null;this.src='images/profil/unselected.jpg';\"><br>";
+	}
+	
+	echo "<b>Pseudo : </b>".$tab[13]."<br>
 		<b>Nom : </b>".$tab[0]."<br>
 	    <b>Prenom : </b>".$tab[1]."<br>
 	    <br>
