@@ -30,7 +30,7 @@ function recupContrats() {
 			$page = $p==1?' '.$p.' ':'&nbsp '.$p.' ';
 			echo $page;
 		} else {
-			$page = $p==1?' <a href="contrats.php?page='.$p.'" >'.$p.'</a> ':'&nbsp <a href="contrats.php?page='.$p.'" >'.$p.'</a> ';
+			$page = $p==1?' <a href="index.php?page='.$p.'" >'.$p.'</a> ':'&nbsp <a href="index.php?page='.$p.'" >'.$p.'</a> ';
 			echo $page;
 		}
 	}
