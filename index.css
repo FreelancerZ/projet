@@ -652,6 +652,7 @@ textarea:focus {
 .form_edition_profil table {
 	width:100%;
 }
+
 .form_edition_profil input{
 	text-align:left;
 	background-color:white;
@@ -675,6 +676,7 @@ textarea:focus {
 }
 #formprofil_lbl {
 	text-align:right;
+
 }
 #cbx {
 	text-align:right;

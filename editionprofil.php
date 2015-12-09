@@ -5,12 +5,7 @@ session_start();
 if (!isset($_SESSION['nom'])) {
 	header("location:connexion.php");
 }
-require "inc/edition.profil.php";
-editerProfil($_POST);
 
-if(!empty($_FILES)) {
-	editerAvatar($_FILES['avatar']);
-}
 include "inc/head.html";
 ?>
 
