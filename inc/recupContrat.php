@@ -69,7 +69,7 @@ function recupDetailsContrats($idContrat) {
 		$contrats = array($data['contrat_id'], $data['user_nom'], $data['user_prenom'], $data['contrat_titre'],
 						$data['contrat_theme'], $data['contrat_etat'], $data['contrat_description'], $data['contrat_montant'], $data['contrat_competences'],
 						$data['contrat_publication'], $data['contrat_debut_prevue'],
-						$data['contrat_debut_reel'], $data['contrat_fin_prevue'], $data['contrat_fin_reelle'],$data['user_id']);
+						$data['contrat_debut_reel'], $data['contrat_fin_prevue'], $data['contrat_fin_reelle'],$data['contrat_auteur']); // user_id
 	}
 
 	if ($contrats == null) {

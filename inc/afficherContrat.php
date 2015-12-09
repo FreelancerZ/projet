@@ -134,7 +134,7 @@ function afficherMesParticipations() {
 			</ul>
 			<p id=\"date_publi\">Contrat publié le {$contrats[9]}</p>
 			";
-			if ($contrats[12] != $_SESSION['id']) {
+			if ($contrats[14] != $_SESSION['id'] && $etat == 0) {
 				echo "<a href=\"proposition.php?c={$contrats[0]}\"><div>Rejoindre ce contrat</div></a>";
 			}
 			echo "</div>";
