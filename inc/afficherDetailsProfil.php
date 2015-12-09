@@ -31,9 +31,10 @@ function afficherDetailsProfil($idUser) {
 	    3 : ".(!empty($tab[10])?"<a href=\"".$tab[10]."\" target=\"_blank\">".$tab[10]."</a>":"Aucun")."<br>
 	    4 : ".(!empty($tab[11])?"<a href=\"".$tab[11]."\" target=\"_blank\">".$tab[11]."</a>":"Aucun")."<br>
 	    5 : ".(!empty($tab[12])?"<a href=\"".$tab[12]."\" target=\"_blank\">".$tab[12]."</a>":"Aucun")."<br>
-		<br>
-		<div><a href=\"editionprofil.php\">Modifier ces informations</a></div></div>
-		";
+		<br>";
+    if ($_SESSION['id'] == $idUser) {
+        echo "<div><a href=\"editionprofil.php\">Modifier ces informations</a></div></div>";
+    }
 }
 ?>
 
