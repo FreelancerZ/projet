@@ -40,4 +40,3 @@ header("location:candidatures.php");
     header("location:candidatures.php");
 }
 ?>
-<a href="candidatures.php">retour</a>
