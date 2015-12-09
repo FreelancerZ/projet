@@ -42,12 +42,12 @@
 				</tr>
 				<tr>
 					<td colspan="2" id="contenu">					
-					<a href="recherche.php">Rechercher</a><br>
+					<a href="index.php">Rechercher</a><br>
 					<a href="create.php">Proposer</a><br>
 					<a href="mes-propositions.php">Mes propositions</a><br>
 					<a href="participations.php">Mes participations</a><br>
 					<a href="candidatures.php">Candidatures</a><br>
-					<a href="">Effectués</a><br>
+					<a href="historique.php">Effectués</a><br>
 					</td>
 				</tr>
 				<!--<tr  id="cat">
@@ -63,7 +63,7 @@
 			<!-- Version smartphone (else display:none) -->
 			<table class="profil_smartphone">
 				<tr>
-					<td rowspan="3" id="photo" ><img src="images/profil/<?php echo $_SESSION['id'] ?>.jpg" alt="nom prénom"></td>
+					<td rowspan="3" id="photo" ><img src="images/profil/<?php echo $_SESSION['id'] ?>.jpg" alt="nom prénom" onError="this.onerror=null;this.src='images/profil/unselected.jpg';"></td>
 					<!-- Nom -->
 					<td id="prenom"  colspan="2" ><?php echo $_SESSION['prenom']; ?></td>
 				</tr>
@@ -86,12 +86,12 @@
 						<a href="parametres.php">Paramètres</a><br>					
 					</td>
 					<td id="contenu">
-						<a href="recherche.php">Rechercher</a><br>
+						<a href="index.php">Rechercher</a><br>
 						<a href="create.php">Proposer</a><br>
 						<a href="mes-propositions.php">Mes propositions</a><br>
-						<a href="">Mes participations</a><br>
+						<a href="participations.php">Mes participations</a><br>
 						<a href="candidatures.php">Candidatures</a><br>
-						<a href="">Effectués</a><br>
+						<a href="historique.php">Effectués</a><br>
 					</td>
 					<!--<td id="contenu">
 						<a href="">Autre</a>
