@@ -50,8 +50,8 @@ function recupContrats() {
 
 /**
  * Récupère tous les informations d'un certain contrat
- * @param int(11) idContrat - l'identifiant du contrat
- * @return Un tableau [][] contenant les informations nécessaires à l'affichage
+ * @param int idContrat - l'identifiant du contrat
+ * @return array Un tableau [][] contenant les informations nécessaires à l'affichage
  */
 function recupDetailsContrats($idContrat) {
     $contrats = null;
@@ -81,7 +81,7 @@ function recupDetailsContrats($idContrat) {
 
  /**
  * Récupère toutes les participations en cours de l'utilisateur
- * @return Un tableau [][] contenant les informations nécessaires à l'affichage
+ * @return array Un tableau [][] contenant les informations nécessaires à l'affichage
  */
 function recupMesPropositions() {
     $contrats = array();
