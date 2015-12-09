@@ -43,6 +43,14 @@ header {
 	height:140px;
 }
 
+a {
+	text-decoration:none;
+	color:#FA5D32;
+}
+a:hover {
+	text-decoration:none;
+	color:#FDB8A5;
+}
 .header_title{
 	font-family: "NIAGSOL", Helvetica, Arial, sans-serif;
 	font-weight:bold;
@@ -333,25 +341,44 @@ padding-bottom:10px;
 	padding:2px 0px 2px 8px;
 	height:auto;
 }
-#theme {
-}
-#comp {
-}
-#pers {
-}
-#remu {
-}
 .contrat:hover  header {
 	background-color:#FB7D5B;
 }
-.conteneur_contrats  span{
-	position:absolute;
+
+/* HISTORIQUE des contrats*/
+.contrat_hist {
+	margin:20px 10px 10px 10px;
+	padding-bottom:10px;
+	height:auto;
+	background-color:#f2f2f2;
+	box-shadow:0px 0px 50px rgba(0,0,0,0.2) inset;
+}
+#lien_contrat {
+	text-decoration:none;
+	color:white;
+}
+.contrat_hist p {
+	color:#424242;
+	margin:0px;
+	padding:8px 8px 0px 8px;
+	height:auto;
+}
+.contrat_hist header{
+	background-color:#424242;
+	text-align:left;
+	margin:0px;
+	padding:2px 0px 2px 8px;
+	height:auto;
+}
+.contrat_hist:hover  header {
+	background-color:#929292;
+}
+/* PAGINATION */
+#pagination{
 	color:#FB7D5B;
 	z-index:5;
-	right:70px;
-	top:268px;
 }
-.conteneur_contrats span a{
+#pagination span a{
 	background-color:#FB7D5B;
 	padding-left:6px;
 	padding-right:6px;
@@ -360,9 +387,8 @@ padding-bottom:10px;
 	text-decoration:none;
 	text-wrap:nowrap;
 	overflow:hidden;
-
 }
-.conteneur_contrats span a:hover{
+#pagination span a:hover{
 	opacity:0.7;
 }
 /* Créer un contrat */
@@ -426,7 +452,7 @@ textarea:focus {
 	border: 0px solid;
 	border-radius:5px;
 	padding:5px;
-	margin:20px auto 0px 0px;
+	margin:20px 0px 0px 45%;
 	width:auto;	
 	background-color:#424242;
 	border:3px solid #424242;
@@ -442,7 +468,7 @@ textarea:focus {
 	color:#52BD24;
 
 }
-#message{	/* texte d'information */
+#message{	/* texte d'alerte */
 	text-align:center;
 	color:red;
 	font-family: arial;
@@ -457,13 +483,13 @@ textarea:focus {
 	font-size:0.8em;
 }
 
-#message_ok a {	/* texte d'information */
+#message_ok a {
 	color:black;
 	font-family: arial;
 	text-decoration:none;
 }
 
-#message_ok a:hover {	/* texte d'information */
+#message_ok a:hover {	
 	color:#636363;
 }
 
@@ -513,6 +539,7 @@ textarea:focus {
 #date_publi {
 	text-align:right;
 	font-style:italic;
+	padding-right:20px;
 }
 
 /* profil parametres */
@@ -552,6 +579,7 @@ textarea:focus {
 	cursor:pointer;
 	color:#FDB8A5;
 }
+
 
 /* PAGE 404 sweg */
 .page404 {

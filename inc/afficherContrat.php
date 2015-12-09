@@ -5,7 +5,7 @@ function afficherListeContrats() {
     $contrats = recupContrats();
 
 	if ($contrats == -1) {
-		echo '<div>Aucun contrat n\'est actuellement disponible.</div>';
+		echo '<div>&nbsp&nbsp&nbspAucun contrat n\'est actuellement disponible.</div>';
 	} else {
 		for ($i=0; $i < sizeof($contrats); $i++) {
 
@@ -29,7 +29,7 @@ function afficherMesPropositions() {
 	$contrats = recupMesPropositions();
 	
 	if ($contrats == -1) {
-		echo '<div>Vous n\'avez aucun contrat.</div></a>';
+		echo '<div>&nbsp&nbsp&nbspVous n\'avez aucun contrat.</div></a>';
 	} else {
 		for ($i=0; $i < sizeof($contrats); $i++) {
 
@@ -54,7 +54,7 @@ function afficherMesParticipations() {
 	$contrats = recupParticipations();
 
 	if ($contrats == -1) {
-		echo '<div>Vous ne participez à aucun contrat.</div></a>';
+		echo '<div>&nbsp&nbsp&nbspVous ne participez à aucun contrat.</div></a>';
 	} else {
 		for ($i=0; $i < sizeof($contrats); $i++) {
 
@@ -73,77 +73,126 @@ function afficherMesParticipations() {
 	}
 }
 
-	function afficherDetailsContrats($idContrat) {
-		require "recupContrat.php";
-		$contrats = recupDetailsContrats($idContrat);
+function afficherDetailsContrats($idContrat) {
+	require "recupContrat.php";
+	$contrats = recupDetailsContrats($idContrat);
 
-		if ($contrats == -1) {
-			echo "
-				<div class=\"affich_contrat\">
-					Ce contrat n'existe pas.
-				</div>
-			";
-		} else {
-			$etat = $contrats[5];
-
-			echo "
+	if ($contrats == -1) {
+		echo "
 			<div class=\"affich_contrat\">
-			<h2>{$contrats[3]}</h2>
-			<h3>Informations générales :</h3>
-			<ul>
-			   <li>Auteur : {$contrats[2]} {$contrats[1]}</li>
-			   <li>Thème : {$contrats[4]}</li>
-			   <li>Etat : ";
+				&nbsp&nbsp&nbspCe contrat n'existe pas.
+			</div>
+		";
+	} else {
+		$etat = $contrats[5];
 
-				// Affichage de l'état du contrat
-				  if ($etat == 0) {
-				   echo "Ouvert";
-			   } else if ($etat == 1) {
-				   echo "En cours";
-			   } else if ($etat == 2) {
-				   echo "Fermé";
-			   }
-
-			   echo "
-		   </li>
-		</ul>
-		<h3>Description :</h3>
-		<p>{$contrats[6]}</p>
-		<h3>Informations complémentaires :</h3>
+		echo "
+		<div class=\"affich_contrat\">
+		<h2>{$contrats[3]} ";	
+		if (isset($_GET['closed'])) { echo " (contrat terminé)"; }		
+		echo "
+		</h2>
+		<h3>Informations générales :</h3>
 		<ul>
-		   <li>Montant : ".number_format($contrats[7], 2, ',', ' ')." €</li>
-		   <li>Compétences requises : {$contrats[8]}</li>";
+		   <li>Auteur : <a href=\"\">{$contrats[2]} {$contrats[1]}</a></li>
+		   <li>Thème : {$contrats[4]}</li>
+		   <li>Etat : ";
 
-			// Affichage des dates du contrat
-			if ($etat == 0) {
-				echo "
-				<li>Date de début prévue : {$contrats[10]}</li>
-				<li>Date de fin prévue : {$contrats[12]}</li>
-				";
-			} else if ($etat == 1) {
-				echo "
-				<li>Date de début prévue : {$contrats[10]}</li>
-				<li>Date de début réelle : {$contrats[11]}</li>
-				<li>Date de fin prévue : {$contrats[12]}</li>
-				";
-			} else if ($etat == 2) {
-				echo "
-				<li>Date de début : {$contrats[11]}</li>
-				<li>Date de fin : {$contrats[13]}</li>
-				";
-			}
+			// Affichage de l'état du contrat
+			  if ($etat == 0) {
+			   echo "Ouvert";
+		   } else if ($etat == 1) {
+			   echo "En cours";
+		   } else if ($etat == 2) {
+			   echo "Fermé";
+		   }
 
+		   echo "
+	   </li>
+	</ul>
+	<h3>Description :</h3>
+	<p>{$contrats[6]}</p>
+	<h3>Informations complémentaires :</h3>
+	<ul>
+	   <li>Montant : ".number_format($contrats[7], 2, ',', ' ')." €</li>
+	   <li>Compétences requises : {$contrats[8]}</li>";
+
+		// Affichage des dates du contrat
+		if ($etat == 0) {
 			echo "
-			</ul>
-			<p id=\"date_publi\">Contrat publié le {$contrats[9]}</p>
+			<li>Date de début prévue : {$contrats[10]}</li>
+			<li>Date de fin prévue : {$contrats[12]}</li>
 			";
+		} else if ($etat == 1) {
+			echo "
+			<li>Date de début prévue : {$contrats[10]}</li>
+			<li>Date de début réelle : {$contrats[11]}</li>
+			<li>Date de fin prévue : {$contrats[12]}</li>
+			";
+		} else if ($etat == 2) {
+			echo "
+			<li>Date de début : {$contrats[11]}</li>
+			<li>Date de fin : {$contrats[13]}</li>
+			";
+		}
+
+		echo "
+		</ul>
+		<p id=\"date_publi\">Contrat publié le {$contrats[9]}</p>
+		";
+		// si le contrat est terminé on n'affiche pas le bouton rejoindre.
+		if (!isset($_GET['closed'])) {
 			if ($contrats[14] != $_SESSION['id'] && $etat == 0) {
 				echo "<a href=\"proposition.php?c={$contrats[0]}\"><div>Rejoindre ce contrat</div></a>";
+		
 			} else if ($_SESSION['id'] == $contrats[14] && $etat == 1) { // Seul l'auteur du contrat peut y mettre fin.
-                echo "<a href=\"terminerContrat.php?c={$contrats[0]}\" onclick=\"return window.confirm('Le contrat va se terminer, cette action est irréversible. Voulez vous continuer ?.')\">Mettre fin au contrat</a>";
-            }
-			echo "</div>";
+				echo "<a href=\"terminerContrat.php?c={$contrats[0]}\" onclick=\"return window.confirm('Le contrat va se terminer, cette action est irréversible. Voulez vous continuer ?.')\">Mettre fin au contrat</a>";
+			}
+		} else {
+			echo "<a href=\"historique.php\"> &nbsp&nbspRETOUR</a>";
+		}
+		echo "</div>";
+	}
+}
+
+function afficherHistorique() {
+
+	require "recupContrat.php";
+	$contrats = recupHistorique();
+
+	if ($contrats == -1) {
+		echo '<div>&nbsp&nbsp&nbspVous n\'avez participé à aucun contrat pour le moment.</div></a>';
+	} else {
+		for ($i=0; $i < sizeof($contrats); $i++) {
+
+			echo '
+			<a id="lien_contrat" href="contrat.php?c='.$contrats[$i][0].'&closed=1"><div class="contrat_hist">
+				<header>
+					'.$contrats[$i][1].' (Contrat terminé)
+				</header>
+				<p id="theme"><b>Thème :</b> '.$contrats[$i][9].'</p>
+				<p id="pers"><b>Proposeur :</b> '.$contrats[$i][2].'</p>
+				<p><b>A duré du </b>'.$contrats[$i][7].'<b> au </b>'.$contrats[$i][8].'</p>
+
+			</div></a>';
+
+			/*
+			 $data['histo_contrat'], 
+			 $data['histo_titre'], 
+			 $data['pseudo_dem'], 
+			 $data['pseudo_prest'], 
+			 $data['histo_desc'], 
+			 $data['histo_demandeur'], 
+			 $data['histo_prestataire'], 
+			 $data['histo_date_deb'], 
+			 $data['histo_date_fin'], 
+			 $data['hist_theme'], 
+			 $data['histo_montant'], , 
+			 $data['histo_competences']);
+			*/
+			
 		}
 	}
+}
 
 ?>
