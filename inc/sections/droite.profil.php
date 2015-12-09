@@ -4,9 +4,13 @@
 			DETAILS
 		</header>
 		<article>
-			<?php 
+			<?php
+            $id = $_SESSION['id'];
 			require "inc/afficherDetailsProfil.php";
-			afficherDetailsProfil($_SESSION['id']);
+            if (isset($_GET['p']) && is_numeric($_GET['p'])) {
+                $id = $_GET['p'];
+            }
+			afficherDetailsProfil($id);
 			?>
 		</article>
 	</div>
