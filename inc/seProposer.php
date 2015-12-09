@@ -28,7 +28,7 @@ Ceci est un mail généré via formulaire, Merci de ne pas y répondre.';
     @mail($destinataire, $sujet, $contenu, $entete);
 	
 	// Affichage du message de validation
-    return "<p id=\"message_ok\">Votre proposition à ce contrat à bien été enregistrée.<br>Vous serez informer si vous êtes accepté ou non.</p>";
+    return "<p id=\"message_ok\">Votre proposition à ce contrat à bien été enregistrée.<br>Vous serez informé si vous êtes accepté ou non.</p>";
 }
 
 function ajouterProposition($idContrat) {
