@@ -94,6 +94,7 @@ function recupDetailsContrats($idContrat) {
 	}
 }
 
+
  /**
  * Récupère toutes les participations en cours de l'utilisateur
  * @return array Un tableau [][] contenant les informations nécessaires à l'affichage
@@ -280,5 +281,30 @@ function recupHistorique() {
 	} else {
 		return $contrats;
 	}
+}
+
+
+function recupDetailContratFerme() {
+	
+    $tabcontrats = array();
+    require "bd/bdd.php";
+    $bdd = bdd();
+
+    $req = $bdd->prepare("SELECT historique_contrat.*, users.user_pseudo AS pseudo_dem, users_privee.user_pseudo AS pseudo_prest
+						  FROM historique_contrat JOIN users ON user_id = histo_demandeur JOIN users_privee ON privee_id = histo_prestataire
+						  WHERE histo_contrat = :id");
+    $req->bindParam(":id",$_GET["c"]);
+	$req->execute();
+
+	$tabcontrats = null;
+    while ($data = $req->fetch()) {
+        $tabcontrats = array($data['histo_contrat'], $data['histo_titre'], $data['pseudo_dem'], $data['pseudo_prest'], $data['histo_desc'], $data['histo_demandeur'], $data['histo_prestataire'], $data['histo_date_deb'], $data['histo_date_fin'], $data['histo_theme'], $data['histo_montant'], $data['histo_competences']);
+    }
+	
+	if ($tabcontrats == null) {
+		return -1;
+	} else {
+		return $tabcontrats;
+	}	
 }
 ?>
