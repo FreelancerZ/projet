@@ -128,7 +128,7 @@ function recupMesPropositions() {
 				$page = $p==1?' '.$p.' ':'&nbsp '.$p.' ';
 				echo $page;
 			} else {
-				$page = $p==1?' <a href="index.php?page='.$p.'" >'.$p.'</a> ':'&nbsp <a href="index.php?page='.$p.'" >'.$p.'</a> ';
+				$page = $p==1?' <a href="mes-propositions.php?page='.$p.'" >'.$p.'</a> ':'&nbsp <a href="mes-propositions.php?page='.$p.'" >'.$p.'</a> ';
 				echo $page;
 			}
 		}
@@ -188,7 +188,7 @@ function recupParticipations() {
 				$page = $p==1?' '.$p.' ':'&nbsp '.$p.' ';
 				echo $page;
 			} else {
-				$page = $p==1?' <a href="index.php?page='.$p.'" >'.$p.'</a> ':'&nbsp <a href="index.php?page='.$p.'" >'.$p.'</a> ';
+				$page = $p==1?' <a href="participations.php?page='.$p.'" >'.$p.'</a> ':'&nbsp <a href="participations.php?page='.$p.'" >'.$p.'</a> ';
 				echo $page;
 			}
 		}
