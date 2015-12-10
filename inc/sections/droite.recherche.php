@@ -15,6 +15,13 @@
 				<br />
 				<input type="submit" value="Rechercher" />
 			</form>
+			<br /><br />
+			<form method="get" action="resultat.php">
+				Recherche entre : <input type="text" name="db" placeholder="aaaa-mm-jj" size="7" /> et
+				<input type="text" name="df" placeholder="aaaa-mm-jj" size="7" />
+				<br />
+				<input type="submit" value="Rechercher sur cette période" />
+			</form>
 		</article>
 	</div>
 </div>

@@ -5,7 +5,7 @@
 		$bdd = bdd();
 		
 		// La requête SQL
-		$sql = "SELECT * FROM v_recherche";
+		$sql = "SELECT * FROM v_recherche_texte";
 		
 		// Traitement des paramètres multiples
 		$tabRech = explode(" ", $resRech);
@@ -46,7 +46,7 @@
 		require "bd/bdd.php";
 		$bdd = bdd();
 		
-		$sql = "SELECT * FROM v_recherche";
+		$sql = "SELECT * FROM v_recherche_texte";
 		
 		// Traitement des paramètres multiples
 		$tabRech = explode(" ", $resRech);
@@ -90,6 +90,80 @@
 		}
 
 		$req = $bdd->prepare($sql);
+		$req->execute();
+		
+		$i = 0;
+		$resultats = null;
+		while ($data = $req->fetch()) {
+			$resultats[$i] = array($data['contrat_id'], $data['user_nom'], $data['user_prenom'], $data['contrat_titre'], $data['contrat_theme'], $data['contrat_montant'], $data['contrat_competences']);
+			$i++;
+		}
+
+		if ($resultats == null) {
+			return -1;
+		} else {
+			return $resultats;
+		}
+	}
+	
+	function recherchePeriode($debut, $fin) {
+		// Connexion à la base de données
+		require "bd/bdd.php";
+		$bdd = bdd();
+		
+		// La requête SQL
+		$req = $bdd->prepare("SELECT * FROM v_recherche_periode WHERE contrat_debut_prevue BETWEEN :debut AND :fin
+															  AND contrat_fin_prevue BETWEEN :debut AND :fin");
+		$req->bindParam(":debut", $debut);
+		$req->bindParam(":fin", $fin);
+		$req->execute();
+		
+		$i = 0;
+		$resultats = null;
+		while ($data = $req->fetch()) {
+			$resultats[$i] = array($data['contrat_id'], $data['user_nom'], $data['user_prenom'], $data['contrat_titre'], $data['contrat_theme'], $data['contrat_montant'], $data['contrat_competences']);
+			$i++;
+		}
+
+		if ($resultats == null) {
+			return -1;
+		} else {
+			return $resultats;
+		}
+	}
+	
+	function rechercheDebut($debut) {
+		// Connexion à la base de données
+		require "bd/bdd.php";
+		$bdd = bdd();
+		
+		// La requête SQL
+		$req = $bdd->prepare("SELECT * FROM v_recherche_periode WHERE contrat_debut_prevue >= :debut");
+		$req->bindParam(":debut", $debut);
+		$req->execute();
+		
+		$i = 0;
+		$resultats = null;
+		while ($data = $req->fetch()) {
+			$resultats[$i] = array($data['contrat_id'], $data['user_nom'], $data['user_prenom'], $data['contrat_titre'], $data['contrat_theme'], $data['contrat_montant'], $data['contrat_competences']);
+			$i++;
+		}
+
+		if ($resultats == null) {
+			return -1;
+		} else {
+			return $resultats;
+		}
+	}
+	
+	function rechercheFin($fin) {
+		// Connexion à la base de données
+		require "bd/bdd.php";
+		$bdd = bdd();
+		
+		// La requête SQL
+		$req = $bdd->prepare("SELECT * FROM v_recherche_periode WHERE contrat_fin_prevue <= :fin");
+		$req->bindParam(":fin", $fin);
 		$req->execute();
 		
 		$i = 0;
