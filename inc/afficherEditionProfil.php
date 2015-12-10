@@ -4,10 +4,10 @@
  * @return Un tableau [][] contenant les informations nécessaires a l'affichage
  */
 function afficherEditionProfil() {
-	 	
-	require "inc/recupDetailsProfil.php";	
+
+	require "inc/recupDetailsProfil.php";
 	$tab2 = recupDetailsProfil($_SESSION['id']);
-	
+
 	echo "
 	<form class=\"form_edition_profil\" action=\"profil.php\" method=\"post\" enctype=\"multipart/form-data\">
 		<table>
@@ -95,14 +95,20 @@ function afficherEditionProfil() {
 				<td></td>
 			</tr>
 			<tr>
+				<td id=\"formprofil_lbl\">n°5</td>
+				<td><input class=\"text\" type=\"text\" name=\"site4\" value=\"".$tab2[12]."\"/></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
 				<td style=\"text-align:center;\" colspan=\"4\">
 					<input id=\"btn_form\"class=\"btn\" type=\"submit\" value=\"ENREGISTRER LES CHANGEMENTS\">
 				</td>
 		</form>
 	</table>
-		
-	
+
+
 	";
-	
+
 }
 ?>
