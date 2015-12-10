@@ -6,25 +6,25 @@
 function editerProfil($tab) {
     include_once "bd/bdd.php";
 	$private = "Privée";
-	
+
     // Si l'élément est vide, on indique "" dans la BD
     foreach ($tab as $valeur => $k) {
-		
+
         if (empty($k) || $k == null) {
             $tab[$valeur] = "";
         }
 	}
-        
+
 	// contrôle du format du code postal
 	if (empty($tab['cp']) || !is_numeric($tab['cp']) || strlen($tab['cp']) != 5) {
 		$tab['cp'] = "";
 	}
-	
+
 	// connxion à la BDD
 	$bdd = bdd();
 
 	// enregistrement des modifications dans la BDD privée
-	$sql = "UPDATE users_privee SET user_pseudo = :pseudo, user_ville = :ville, user_adresse = :adresse, user_cp = :cp, user_competences = :competences, user_site1 = :site1, user_site2 = :site2, user_site3 = :site3, user_site4 = :site4 WHERE user_id = :id";
+	$sql = "UPDATE users_privee SET user_pseudo = :pseudo, user_ville = :ville, user_adresse = :adresse, user_cp = :cp, user_competences = :competences, user_site1 = :site1, user_site2 = :site2, user_site3 = :site3, user_site4 = :site4, user_site5 = :site5 WHERE user_id = :id";
 	$req = $bdd->prepare($sql);
 	$req->bindParam(':pseudo',$tab['pseudo']);
 	$req->bindParam(':ville',$tab['ville']);
@@ -35,17 +35,19 @@ function editerProfil($tab) {
 	$req->bindParam(':site2',$tab['site2']);
 	$req->bindParam(':site3',$tab['site3']);
 	$req->bindParam(':site4',$tab['site4']);
+	$req->bindParam(':site5',$tab['site5']);
 	$req->bindParam('id',$_SESSION['id']);
-	
+
 	$tab['site1'] = checkAdress($tab['site1']);
 	$tab['site2'] = checkAdress($tab['site2']);
 	$tab['site3'] = checkAdress($tab['site3']);
 	$tab['site4'] = checkAdress($tab['site4']);
-	
+	$tab['site5'] = checkAdress($tab['site5']);
+
 	$req->execute();
-		
+
 	// enregistrement des modifications dans la BDD public
-	$sql = "UPDATE users SET user_pseudo = :pseudo, user_ville = :ville, user_adresse = :adresse, user_cp = :cp, user_competences = :competences, user_site1 = :site1, user_site2 = :site2, user_site3 = :site3, user_site4 = :site4 WHERE user_id = :id";
+	$sql = "UPDATE users SET user_pseudo = :pseudo, user_ville = :ville, user_adresse = :adresse, user_cp = :cp, user_competences = :competences, user_site1 = :site1, user_site2 = :site2, user_site3 = :site3, user_site4 = :site4, user_site5 = :site5 WHERE user_id = :id";
 	$req = $bdd->prepare($sql);
 	$req->bindParam(':pseudo',$tab['pseudo']);
 	if(isset($tab['villePv'])) {
@@ -62,12 +64,12 @@ function editerProfil($tab) {
 		$req->bindParam(':cp',$private);
 	}else {
 		$req->bindParam(':cp',$tab['cp']);
-	}	
+	}
 	if(isset($tab['competencesPv'])) {
 		$req->bindParam(':competences',$private);
 	} else {
 		$req->bindParam(':competences',$tab['competences']);
-	}     
+	}
 	if(isset($tab['site1Pv'])) {
 		$req->bindParam(':site1',$private);
 	} else {
@@ -87,18 +89,24 @@ function editerProfil($tab) {
 		$req->bindParam(':site4',$private);
 	} else {
 		$req->bindParam(':site4',$tab['site4']);
-	} 
+	}
+	if(isset($tab['site5Pv'])) {
+		$req->bindParam(':site5',$private);
+	} else {
+		$req->bindParam(':site5',$tab['site5']);
+	}
 	$req->bindParam('id',$_SESSION['id']);
-	
+
 	$tab['site1'] = checkAdress($tab['site1']);
 	$tab['site2'] = checkAdress($tab['site2']);
 	$tab['site3'] = checkAdress($tab['site3']);
 	$tab['site4'] = checkAdress($tab['site4']);
-	
+	$tab['site5'] = checkAdress($tab['site5']);
+
 	$req->execute();
 
 	$_SESSION['pseudo'] = $tab['pseudo'];
-	
+
     return $tab; //var_dump($tab)
 }
 
@@ -106,10 +114,10 @@ function editerMdp($userMdp,$userMdpConf) {
     include_once "bd/bdd.php";
 	if($userMdp === $userMdpConf) {
 		$mdpBD = md5($userMdp);
-	
+
 		// connxion à la BDD
 		$bdd = bdd();
-		
+
 		// enregistrement des modifications dans la BDD
 		$sql = "UPDATE users SET user_password = :mdp WHERE user_id = :id";
 		$req = $bdd->prepare($sql);
@@ -125,7 +133,7 @@ function editerMdp($userMdp,$userMdpConf) {
 
 function editerEmail($userEmail) {
     include_once "bd/bdd.php";
-	
+
 	// connexion à la BDD
 	$bdd = bdd();
 
@@ -136,46 +144,46 @@ function editerEmail($userEmail) {
 	$req->bindParam('id',$_SESSION['id']);
 
 	$req->execute();
-	
+
 	return "<p id=\"message_ok\">Le mail a bien été modifié.</p>";
 }
 
 function checkAdress($adress) {
-	
+
 	if (empty($adress) || $adress == "") {
-		return $adress;	
+		return $adress;
 	} else if (substr($adress, 0, 7) != 'http://' && substr($adress, 0, 8) != 'https://') {
 		return "http://".$adress;
 	} else {
-		return $adress;		
+		return $adress;
 	}
-	
+
 }
 
 function editerAvatar($userAvatar) {
 	$tabExt = array('jpg','png','gif');
 	$extension = pathinfo($userAvatar['name'], PATHINFO_EXTENSION);
 	if(in_array(strtolower($extension),$tabExt)) {
-		// On enregistre l'image avant de la redimensionner 
+		// On enregistre l'image avant de la redimensionner
 		move_uploaded_file($userAvatar['tmp_name'],"images/profil/".$_SESSION['id'].".".$extension);
 		// On enregistre le chemin de l'image pour pouvoir la redimenssioner
 		$avatarOriginal = "images/profil/".$_SESSION['id'].".".$extension."";
 		// Dimensions standard d'une image
 		$mlargeur = 400;
 		$mhauteur = 400;
-		
+
 		// On récupère les dimensions de l'image
 		$dimension=getimagesize($avatarOriginal);
-		
+
 		// On crée une image à partir du fichier récup
 		if(substr(strtolower($avatarOriginal),-4)==".jpg"){$avatarOriginal = imagecreatefromjpeg($avatarOriginal); }
 		else if(substr(strtolower($avatarOriginal),-4)==".png"){$avatarOriginal = imagecreatefrompng($avatarOriginal); }
 		else if(substr(strtolower($avatarOriginal),-4)==".gif"){$avatarOriginal = imagecreatefromgif($avatarOriginal); }
 		// L'image ne peut etre redimensionne
 		else{return false; }
-		
+
 		// On crée une image vide de la largeur et hauteur voulue
-		$image =imagecreatetruecolor ($mlargeur,$mhauteur); 
+		$image =imagecreatetruecolor ($mlargeur,$mhauteur);
 		// On va gérer la position et le redimensionnement de la grande image
 		if($dimension[0]>($mlargeur/$mhauteur)*$dimension[1] ){ $dimY=$mhauteur; $dimX=$mhauteur*$dimension[0]/$dimension[1]; $decalX=-($dimX-$mlargeur)/2; $decalY=0;}
 		if($dimension[0]<($mlargeur/$mhauteur)*$dimension[1]){ $dimX=$mlargeur; $dimY=$mlargeur*$dimension[1]/$dimension[0]; $decalY=-($dimY-$mhauteur)/2; $decalX=0;}
