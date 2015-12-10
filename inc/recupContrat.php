@@ -230,7 +230,7 @@ function recupHistorique() {
 
 	// PAGINATION ---------------------------------------------------------------------------
 	$req = $bdd->prepare("SELECT count(*) as nbContrats FROM historique_contrat LEFT JOIN users ON user_id = histo_prestataire
-						  WHERE histo_prestataire = :id");
+						  WHERE histo_prestataire = :id OR histo_demandeur = :id");
 	$req->bindParam(":id",$_SESSION["id"]);
     $req->execute();
     $data = $req->fetch();
@@ -263,19 +263,18 @@ function recupHistorique() {
 	// FIN PAGINATION ---------------------------------------------------------------------------
 
     $req = $bdd->prepare("SELECT historique_contrat.*, users.user_pseudo AS pseudo_dem, users_privee.user_pseudo AS pseudo_prest
-						  FROM historique_contrat JOIN users ON user_id = histo_demandeur JOIN users_privee ON privee_id = histo_prestataire
-						  WHERE histo_prestataire = :id
-						  ORDER BY histo_date_fin DESC LIMIT ".($pa-1)*$cpp.",".$cpp."");
+						  FROM historique_contrat LEFT JOIN users ON user_id = histo_demandeur LEFT JOIN users_privee ON privee_id = histo_prestataire
+						  WHERE histo_prestataire = :id OR histo_demandeur = :id
+						  ORDER BY histo_date_fin DESC LIMIT ".($pa-1)*$cpp.",".$cpp." ");
     $req->bindParam(":id",$_SESSION["id"]);
 	$req->execute();
 	
     $i = 0;
-	$contrats = null;
+	$contrats = array();
     while ($data = $req->fetch()) {
         $contrats[$i] = array($data['histo_contrat'], $data['histo_titre'], $data['pseudo_dem'], $data['pseudo_prest'], $data['histo_desc'], $data['histo_demandeur'], $data['histo_prestataire'], $data['histo_date_deb'], $data['histo_date_fin'], $data['histo_theme'], $data['histo_montant'], $data['histo_competences']);
         $i++;
     }
-    
 	if ($contrats == null) {
 		return -1;
 	} else {
@@ -291,7 +290,7 @@ function recupDetailContratFerme() {
     $bdd = bdd();
 
     $req = $bdd->prepare("SELECT historique_contrat.*, users.user_pseudo AS pseudo_dem, users_privee.user_pseudo AS pseudo_prest
-						  FROM historique_contrat JOIN users ON user_id = histo_demandeur JOIN users_privee ON privee_id = histo_prestataire
+						  FROM historique_contrat LEFT JOIN users ON user_id = histo_demandeur LEFT JOIN users_privee ON privee_id = histo_prestataire
 						  WHERE histo_contrat = :id");
     $req->bindParam(":id",$_GET["c"]);
 	$req->execute();

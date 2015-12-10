@@ -41,13 +41,14 @@
 					<th colspan="2" id="categorie">Contrats</th>
 				</tr>
 				<tr>
-					<td colspan="2" id="contenu">					
-					<a href="recherche.php">Rechercher</a><br>
-					<a href="create.php">Proposer</a><br>
-					<a href="mes-propositions.php">Mes propositions</a><br>
-					<a href="participations.php">Mes participations</a><br>
-					<a href="candidatures.php">Candidatures</a><br>
-					<a href="historique.php">Effectués</a><br>
+					<td colspan="2" id="contenu">
+                        <a href="index.php">Tous</a><br>
+                        <a href="recherche.php">Rechercher</a><br>
+                        <a href="create.php">Proposer</a><br>
+                        <a href="mes-propositions.php">Mes propositions</a><br>
+                        <a href="participations.php">Mes participations</a><br>
+                        <a href="candidatures.php">Candidatures</a><br>
+                        <a href="historique.php">Effectués</a><br>
 					</td>
 				</tr>
 				<!--<tr  id="cat">
@@ -86,6 +87,7 @@
 						<a href="parametres.php">Paramètres</a><br>					
 					</td>
 					<td id="contenu">
+                        <a href="index.php">Tous</a><br>
 						<a href="recherche.php">Rechercher</a><br>
 						<a href="create.php">Proposer</a><br>
 						<a href="mes-propositions.php">Mes propositions</a><br>

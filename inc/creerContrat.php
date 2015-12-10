@@ -33,7 +33,7 @@ function creerContrat($tab) {
         $tab['desc'] = str_replace($k,$v, $tab['desc']);
     }
 	ajouterContrat($tab);
-    return "<p id=\"message_ok\">Votre proposition de contrat à bien été ajoutée.<br>Pour la consulter, rendez vous dans la section \"<a href=\"contrats.php\">Mes propositions</a>\".</p>";
+    return "<p id=\"message_ok\">Votre proposition de contrat à bien été ajoutée.<br>Pour la consulter, rendez vous dans la section \"<a href=\"mes-propositions.php\">Mes propositions</a>\".</p>";
 }
 
 function ajouterContrat($tab) {
