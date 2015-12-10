@@ -141,7 +141,7 @@ function afficherDetailsContrats($idContrat) {
 		if ($contrats[14] != $_SESSION['id'] && $etat == 0) {
 			echo "<a href=\"proposition.php?c={$contrats[0]}\"><div>Rejoindre ce contrat</div></a>";
 		} else if ($_SESSION['id'] == $contrats[14] && $etat == 1) { // Seul l'auteur du contrat peut y mettre fin.
-			echo "<a href=\"terminerContrat.php?c={$contrats[0]}\" onclick=\"return window.confirm('Le contrat va se terminer, cette action est irréversible. Voulez vous continuer ?.')\">Mettre fin au contrat</a>";
+			echo "<a href=\"terminerContrat.php?c={$contrats[0]}\" onclick=\"return window.confirm('Le contrat va se terminer, cette action est irréversible. Voulez vous continuer ?.')\"><div>Mettre fin au contrat</div></a>";
 		}
 
 		echo "</div>";
