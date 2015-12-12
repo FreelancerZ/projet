@@ -42,12 +42,22 @@
 				<header class="head_div">
 				MOT DE PASSE OUBLIÉ
 				</header>
-				<form action="accueil.html">
+				<form action="" method="post">
 					<p>Entrez votre adresse email associée :<br></p>
 					<input class="text" type="email" name="ndc"><br><br>
-					<input class="btn" type="button" value="RECUPERER">
+					<input class="btn" type="submit" value="RECUPERER">
 					<p id="subtitle"><a href="connexion.php">Retour</a></p>
+
+					<p>
+						<?php
+							if (isset($_POST['ndc']) && !empty($_POST['ndc'])) {
+								require "inc/mdpOublie.php";
+								echo mdpOublie($_POST['ndc']);
+							}
+						?>
+					</p>
 				</form>
+
 				
 			</div>
 		</div>

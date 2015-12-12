@@ -59,7 +59,7 @@ if (isset($_POST['email']) && isset($_POST['mdp']) && !empty($_POST['email']) &&
 					<input class="text" type="email" name="email"><br><br>
 					<p>Mot de passe :<br></p>
 					<input class="text" type="password" name="mdp"><br>
-					<p id="subtitle"><a href="mdpoublie.html">Mot de passe oublié ?</a></p>
+					<p id="subtitle"><a href="mdpoublie.php">Mot de passe oublié ?</a></p>
 					<input class="btn" type="submit" value="SE CONNECTER">
 					<p id="subtitle">Vous n'avez pas encore de compte ? <a href="inscription.php">S'inscrire</a></p>
 					<?php echo $message; ?>
