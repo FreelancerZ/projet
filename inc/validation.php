@@ -1,23 +1,28 @@
 <?php
-require "bd/bdd.php";
-if (!isset($_GET['cle']) || !isset($_GET['email'])) {
-    header('location:connexion.php');
-    }   // else
+	require "bd/bdd.php";
+	if (!isset($_GET['cle']) || !isset($_GET['email'])) {
+		header('location:connexion.php');
+	}   // else
+		
     $cle = $_GET['cle'];
     $email = $_GET['email'];
     $bdd = bdd();
 
-    $req = $bdd->query("SELECT user_actif, cle FROM users WHERE user_email = '{$email}'");
+    $req = $bdd->prepare("SELECT user_etat, user_cle FROM users WHERE user_email = :email");
+	$req->bindParam(":email", $email);
+	$req->execute();
     $data = $req->fetch();
 
-    if ($data['user_actif'] == 1) {
+    if ($data['user_etat'] == 1) {
         echo "Le compte est déjà activé. <a href=\"../connexion.php\">Connectez vous</a> pour profiter de votre compte";
     } else {
-        if ($cle == $data['cle']) {
+        if ($cle == $data['user_cle']) {
             echo "Votre compte est bien activé. <a href=\"../connexion.php\">Connectez vous</a> pour profiter de votre compte";
-            $bdd->exec("UPDATE users SET user_actif = 1 WHERE user_email like '{$email}'");
+			$req2 = $bdd->prepare("UPDATE users SET user_etat = 1 WHERE user_email LIKE :email");
+			$req2->bindParam(":email", $email);
+			$req2->execute();
         } else {
             echo "Erreur, ce compte ne peut pas être activé. <a href=\"../connexion.php\">Connectez vous</a> pour profiter de votre compte";
         }
     }
-    ?>
+?>

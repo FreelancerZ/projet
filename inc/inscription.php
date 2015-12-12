@@ -41,8 +41,17 @@ function inscrire($infos) {
     // Génération d'une clé pour le lien de validation
     $cle = md5(microtime(TRUE)*100000);
 
-    $bdd->exec("INSERT INTO users(user_nom, user_prenom, user_pseudo, user_password, user_email, user_naissance, user_actif,cle) VALUES('{$nom}','{$prenom}','{$pseudo}','{$mdp}','{$email}','{$naissance}',0,'{$cle}')");
-
+	$req = $bdd->prepare("INSERT INTO users(user_nom, user_prenom, user_pseudo, user_password, user_email, user_naissance, user_inscription, user_etat, user_cle) VALUES(:nom,:prenom,:pseudo,:mdp,:email,:naissance,:inscription,0,:cle)");
+	$req->bindParam(":nom", $infos["nom"]);
+	$req->bindParam(":prenom", $infos["prenom"]);
+	$req->bindParam(":pseudo", $infos["pseudo"]);
+	$req->bindParam(":mdp", $mdp);
+	$req->bindParam(":email", $infos["email"]);
+	$req->bindParam(":naissance", $infos["naissance"]);
+	$req->bindParam(":inscription", $infos["inscription"]);
+	$req->bindParam(":cle", $cle);
+    $req->execute();
+	
     $message = "<p id=\"message_ok\">Votre inscription est en cours, veuillez valider votre compte via l'email envoyé à cette adresse : ".$email."</p>";
 
     // Préparation du mail contenant le lien d'activation

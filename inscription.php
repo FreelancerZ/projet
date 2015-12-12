@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 session_start();
 // Si l'user est déjà connecté, on le redirige vers la page d'accueil.
 if (isset($_SESSION['nom'])) {
@@ -60,6 +60,8 @@ if (isset($_POST) && !empty($_POST)) {
 					<input class="text" type="text" name="nom"><br>
 					<p>Prénom : *<br></p>
 					<input class="text" type="text" name="prenom"><br>
+					<p>Pseudo : *<br></p>
+					<input class="text" type="text" name="pseudo"><br>
 					<p>Date de naissance : *<br></p>
 					<input class="date" type="text" name="jour" placeholder="jj" size="7">
 					<input class="date" type="text" name="mois" placeholder="mm" size="7">
