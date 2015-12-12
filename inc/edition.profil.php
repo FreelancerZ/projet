@@ -110,6 +110,11 @@ function editerProfil($tab) {
     return $tab; //var_dump($tab)
 }
 
+/** 
+ * Modifie le mot de passe de l'utilisateur dans la base de données
+ * $userMdp mot de passe 
+ * $userMdpConf confirmation du mot de passe
+ */
 function editerMdp($userMdp,$userMdpConf) {
     include_once "bd/bdd.php";
 	if($userMdp === $userMdpConf) {
@@ -131,6 +136,10 @@ function editerMdp($userMdp,$userMdpConf) {
 	}
 }
 
+/**
+ * Modifie le mail de l'utilisateur dans la base de données
+ * @param $userEmail email de l'utilisateur
+ */
 function editerEmail($userEmail) {
     include_once "bd/bdd.php";
 
@@ -148,8 +157,11 @@ function editerEmail($userEmail) {
 	return "<p id=\"message_ok\">Le mail a bien été modifié.</p>";
 }
 
+/*
+ * Vérifie le format des liens entrés par l'utilisateur (remplace tatata par http://tatata)
+ * @param $adress adresse de l'utilisateur
+ */
 function checkAdress($adress) {
-
 	if (empty($adress) || $adress == "") {
 		return $adress;
 	} else if (substr($adress, 0, 7) != 'http://' && substr($adress, 0, 8) != 'https://') {
@@ -157,9 +169,12 @@ function checkAdress($adress) {
 	} else {
 		return $adress;
 	}
-
 }
 
+/** 
+ * Modifie l'avatar de l'utilisateur
+ * $userAvatar contient le nom de l'image
+ */
 function editerAvatar($userAvatar) {
 	$tabExt = array('jpg','png','gif');
 	$extension = pathinfo($userAvatar['name'], PATHINFO_EXTENSION);

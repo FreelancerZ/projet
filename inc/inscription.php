@@ -1,5 +1,6 @@
 <?php
 require "bd/bdd.php";
+
 /**
  * Inscrit un utilisateur au site si toutes les informations sont renseignées et valides
  * @param  array $infos Contient toutes les informations
@@ -14,8 +15,8 @@ function inscrire($infos) {
             return "<p id=\"message\">Toutes les informations ne sont pas renseignées</p>";
         }
     }
-
     extract($infos);
+	
     // On teste si la date est valide
     if (!(is_numeric($jour) && is_numeric($mois) && is_numeric($an)) || !checkdate($mois, $jour, $an)) {
         $message = $message."<p id=\"message\">La date de naissance n'est pas valide</p><br>";

@@ -1,16 +1,18 @@
 <?php
 /**
- * Récupere tous les informations d'un certain user
- * @return Un tableau [][] contenant les informations nécessaires à l'affichage
+ * Affiche toutes les informations d'un utilisateur
+ * utilise les données envoyées par la fonction recupDetailsProfil du fichier recupDetailsProfil.php 
  */
 function afficherDetailsProfil($idUser) {
 	require "recupDetailsProfil.php";
 	
 	$tab = recupDetailsProfil($idUser);
 	
+	// Affichage des données
 	echo "<div class=\"profil_infos\">";
        
 	if ($_SESSION['id'] != $idUser) {   
+		// Si l'utilisateur consulte son propre profil on n'affiche pas la photo (trop surchargé, déja présente dans la partie gauche)
 	   echo "<img src=\"images/profil/$idUser.jpg\" alt=\"Avatar\" height=\"150\" onError=\"this.onerror=null;this.src='images/profil/unselected.jpg';\"><br>";
 	}
 	
@@ -36,6 +38,8 @@ function afficherDetailsProfil($idUser) {
 	    4 : ".(!empty($tab[11])?"<a href=\"".$tab[11]."\" target=\"_blank\">".$tab[11]."</a>":"Aucun")."<br>
 	    5 : ".(!empty($tab[12])?"<a href=\"".$tab[12]."\" target=\"_blank\">".$tab[12]."</a>":"Aucun")."<br>
 		<br>";
+		
+	// si l'utilisateur consulte SON profil, le lien "modifier ces informations" s'affiche.	
     if ($_SESSION['id'] == $idUser) {
         echo "<div><a href=\"editionprofil.php\">Modifier ces informations</a></div></div>";
     }

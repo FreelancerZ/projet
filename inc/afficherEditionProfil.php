@@ -1,13 +1,15 @@
 <?php
 /**
- * Récupere tous les informations d'un certain user
- * @return Un tableau [][] contenant les informations nécessaires a l'affichage
+ * Affiche les informations d'un utilisateur, avecdes inputs pour qu'il
+ * puisse éffectuer les modifications qu'il souhaite.
+ * Cette fonction utilise les données envoyées par la fonction recupDetailsProfil, du fichier recupDetailsProfil.php
  */
 function afficherEditionProfil() {
 
 	require "inc/recupDetailsProfil.php";
 	$tab2 = recupDetailsProfil($_SESSION['id']);
 
+	// On préremplira les inputs avec les données de l'utilisateur, pour éviter qu'il remplisse tout les champs a chaque fois.
 	echo "
 	<form class=\"form_edition_profil\" action=\"profil.php\" method=\"post\" enctype=\"multipart/form-data\">
 		<table>

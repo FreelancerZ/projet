@@ -1,4 +1,7 @@
 <?php
+
+	// Gestion de la validation du compte et afichage d'un messsage d'informations
+
 	require "bd/bdd.php";
 	if (!isset($_GET['cle']) || !isset($_GET['email'])) {
 		header('location:connexion.php');

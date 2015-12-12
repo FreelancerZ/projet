@@ -1,11 +1,18 @@
 <?php
-
+/**
+ * Récupère les champs remplis par l'utilisateur et vériie leur contenu
+ * Converti le texte BBcode en format html
+ * @param $tab tableau contenant les valeurs des champs que l'utilisateur a rempli.
+ */
 function creerContrat($tab) {
+	
+	// pour chaque champ on teste si il est rempli ou non
     foreach ($tab as $value) {
-        if (empty($value)) {
+        if (empty($value)) {	
             return "<p id=\"message\">Tous le champs ne sont pas renseignés.</p>";
         }
     }
+	
     if (!is_numeric($tab['remuneration'])) {
         return "<p id=\"message\">La rémunération doit être un nombre.</p>";
     }
@@ -36,6 +43,10 @@ function creerContrat($tab) {
     return "<p id=\"message_ok\">Votre proposition de contrat à bien été ajoutée.<br>Pour la consulter, rendez vous dans la section \"<a href=\"mes-propositions.php\">Mes propositions</a>\".</p>";
 }
 
+/**
+ * Ajoute un contrat dans la base de données
+ * @param $tab tableau contenant les valeurs du contrat à ajouter
+ */
 function ajouterContrat($tab) {
     require "bd/bdd.php";
     $bdd = bdd();

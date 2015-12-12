@@ -66,7 +66,7 @@ function recupContrats() {
 /**
  * Récupère tous les informations d'un certain contrat
  * @param int idContrat - l'identifiant du contrat
- * @return array Un tableau [][] contenant les informations nécessaires à l'affichage
+ * @return array Un tableau [] contenant les informations nécessaires à l'affichage
  */
 function recupDetailsContrats($idContrat) {
     $contrats = null;
@@ -195,8 +195,6 @@ function recupParticipations() {
 		}
 	}
 	echo '</span>';
-	
-	
     // FIN PAGINATION ---------------------------------------------------------------------------
 
     $req = $bdd->prepare("SELECT contrat_id, user_nom, user_prenom, contrat_titre, contrat_theme, contrat_montant, contrat_competences
@@ -283,7 +281,11 @@ function recupHistorique() {
 	}
 }
 
-
+/**
+ * Récupère tous les informations d'un certain contrat, fermé
+ * @param int idContrat - l'identifiant du contrat
+ * @return array Un tableau [] contenant les informations nécessaires à l'affichage
+ */
 function recupDetailContratFerme() {
 	
     $tabcontrats = array();

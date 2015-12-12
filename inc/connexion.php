@@ -4,6 +4,8 @@ require "bd/bdd.php";
 /**
  * Traitement du formulaire de connexion
  * contrôle les identifiants de l'utilisateur pour lui attribuer une session
+ * @param $email email de l'utilisateur (nom de compte)
+ * @param $mdp mot de passe de l'utilisateur 
  */
 function connexion($email, $mdp) {
 	$bdd = bdd();
@@ -24,6 +26,8 @@ function connexion($email, $mdp) {
 			'id' => $data['user_id'],
 			'actif' => $data['user_etat']
 			);
+			
+		// redirection sur le menu principal si connexion bien éffectuée	
 		header("location:index.php");
 		return "Connexion réussie, bienvenue ". $_SESSION['prenom']. " ".$_SESSION['nom'].". Si vous n'êtes pas redirigé automatiquement, veuillez cliquer <a href=\"index.php\">ici</a> pour poursuivre la navigation.";
 	} else {
