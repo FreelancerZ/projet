@@ -119,7 +119,7 @@ function afficherDetailsContrats($idContrat) {
 			<h2>{$contrats[3]}</h2>
 			<h3>Informations générales :</h3>
 			<ul>
-			   <li>Auteur : <a href=\"\">{$contrats[2]} {$contrats[1]}</a></li>
+			   <li>Auteur : <a href=\"{$contrats[14]}\">{$contrats[2]} {$contrats[1]}</a></li>
 			   <li>Thème : {$contrats[4]}</li>
 			   <li>Etat : ";
 
