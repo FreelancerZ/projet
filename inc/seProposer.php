@@ -22,7 +22,7 @@ Voici sa candidature :
 '.$tab['desc'].'
 
 ---------------
-Vous pouvez accepter ou refuser cette candidature ici : http://127.0.0.1/FreelancerZ/projet/candidatures.php.
+Vous pouvez accepter ou refuser cette candidature ici : http://127.0.0.1/freelance/candidatures.php.
 Ceci est un mail généré via formulaire, Merci de ne pas y répondre.';
 
     @mail($destinataire, $sujet, $contenu, $entete);

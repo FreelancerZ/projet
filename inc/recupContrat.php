@@ -201,7 +201,8 @@ function recupParticipations() {
 
     $req = $bdd->prepare("SELECT contrat_id, user_nom, user_prenom, contrat_titre, contrat_theme, contrat_montant, contrat_competences
         FROM contrat LEFT JOIN users ON user_id = contrat_auteur LEFT JOIN proposition ON prop_contrat = contrat_id
-		WHERE contrat_etat != 2 AND prop_user = :id ORDER BY contrat_publication DESC  LIMIT ".($pa-1)*$cpp.",".$cpp."");
+		WHERE contrat_etat != 2 AND prop_etat != 2
+		AND prop_user = :id ORDER BY contrat_publication DESC  LIMIT ".($pa-1)*$cpp.",".$cpp."");
 	$req->bindParam(":id", $_SESSION['id']);
     $req->execute();
 	
