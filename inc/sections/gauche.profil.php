@@ -48,7 +48,8 @@
                         <a href="mes-propositions.php">Mes propositions</a><br>
                         <a href="participations.php">Mes participations</a><br>
                         <a href="candidatures.php">Candidatures</a><br>
-                        <a href="historique.php">Effectués</a><br>
+						<a href="historique.php">Effectués</a><br>
+						<a href="conversations.php">Messagerie</a><br>
 					</td>
 				</tr>
 				<!--<tr  id="cat">
@@ -94,6 +95,7 @@
 						<a href="participations.php">Mes participations</a><br>
 						<a href="candidatures.php">Candidatures</a><br>
 						<a href="historique.php">Effectués</a><br>
+						<a href="conversations.php">Messagerie</a><br>
 					</td>
 					<!--<td id="contenu">
 						<a href="">Autre</a>
