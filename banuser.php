@@ -8,7 +8,7 @@ if (!isset($_SESSION['nom'])) {
 
 if (isset($_POST['raison'])) {
 	require "inc/bannir.php";
-	echo "<script>alert(\"".bannir($_POST['idban'], $_POST['raison'])."\")</script>";
+    $msg = bannir($_POST['idban'], htmlspecialchars($_POST['raison']));
 	header("location:index.php");
 }
 

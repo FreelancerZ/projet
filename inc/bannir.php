@@ -18,12 +18,12 @@
 		$req2->bindParam(':id', $idUser);
 		
 		$req2->execute();
-		$data = $req->fetch();
+		$data = $req2->fetch();
 		
 		$destinataire = $data['user_email'];
-		
+
 		// envoie du mail
-		$sujet = "[Freelancerz] : Votre compte a été bloqué !" ;
+		$sujet = "[Freelancerz] : Votre compte est suspendu !" ;
 		$entete = "From: noreply@freelancerZ.com" ;
 
 		$contenu = 'Bonjour,
@@ -37,8 +37,8 @@
 		---------------
 		Ceci est un mail automatique, Merci de ne pas y répondre.';
 
-		@mail($destinataire, $sujet, $contenu, $entete) ; // Envoi du mail
-		
+		mail($destinataire, $sujet, $contenu, $entete) ; // Envoi du mail
+
 		return "L'utilisateur a bien été banni !";
 	}
 ?>
