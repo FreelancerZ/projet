@@ -305,8 +305,7 @@ function recupDetailContratFerme() {
 	
 	if ($tabcontrats == null) {
 		return -1;
-	} else {
-		return $tabcontrats;
-	}	
+	}
+	return $tabcontrats;
 }
 ?>
