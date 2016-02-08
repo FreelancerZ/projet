@@ -15,19 +15,23 @@ function connexion($email, $mdp) {
 	$email = strtolower($email);
 
 		// connexion à la BD pour tester si l'utilisateur existe et que les données correspondent
-	$sql = "SELECT COUNT(*) AS nb_users, user_id, user_nom, user_prenom, user_pseudo, user_etat FROM users WHERE user_email = :email AND user_password = :mdp";
+	$sql = "SELECT COUNT(*) AS nb_users, user_id, user_nom, user_prenom, user_pseudo, user_etat, user_admin, user_banni FROM users WHERE user_email = :email AND user_password = :mdp";
 	$req = $bdd->prepare($sql);
 	$req->bindParam(":email", $email);
 	$req->bindParam(":mdp", $mdp);
 	$req->execute();
 	$data = $req->fetch();
 	if ($data['nb_users'] == 1) {
+		if ($data['user_banni'] == 1) {
+			return "<p id=\"message\">Votre compte a été bloqué. Vous ne pouvez plus accéder à nos services.</p>";
+		}
 		$_SESSION = array (
 			'nom' => strtoupper($data['user_nom']),
 			'prenom' => ucfirst($data['user_prenom']),
 			'pseudo' => $data['user_pseudo'],
 			'id' => $data['user_id'],
-			'actif' => $data['user_etat']
+			'actif' => $data['user_etat'],
+			'estAdmin' => $data['user_admin']
 			);
 			
 		// redirection sur le menu principal si connexion bien éffectuée	
