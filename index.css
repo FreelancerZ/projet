@@ -712,8 +712,8 @@ textarea:focus {
 	text-align:right;
 }
 #avatar {
-	margin:0px;
-	padding:0px;
+	margin:0;
+	padding:0;
 	font-size:0.9em;
 	background-color:white;
 	border:none;
@@ -723,9 +723,30 @@ textarea:focus {
 }
 
 
+/* Messagerie */
+table.msg {
+    width:100%;
+    margin: auto;
+}
+td {
+    width: 50%;
+}
+td.msgd {
+    padding: 10px;
+    background: #4ec1e9;
+}
+td.msgg {
+    padding: 10px;
+    background: rgba(30, 48, 65, 0.29);
+}
+span.msg_petit {
+    font-size: 14px;
+}
+
+
 /* reste */
 article {
-	margin:0px 10px 0px 10px; /* marges latérales intérieures pour le texte des contenants */
+	margin:0 10px 0 10px; /* marges latérales intérieures pour le texte des contenants */
 }
 
 footer {

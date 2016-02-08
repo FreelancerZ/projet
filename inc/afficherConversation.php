@@ -15,11 +15,19 @@
         $messages = recupConversation($conv);
         $destinataire = 0;
         echo "<div id='messages'>
-                <p>";
+                <table class=\"msg\">
+                <tr>
+                    <td></td><td></td>
+</tr>";
         if (is_array($messages)) {
             for ($i = 0; $i < sizeof($messages); $i++) {
                 $date = date("H:i", strtotime($messages[$i][2]));
-                echo "[$date]{$messages[$i][1]} {$messages[$i][0]} : {$messages[$i][3]} <br>";
+                if ($_SESSION['id'] == $messages[$i][4]) {
+                    echo "<tr><td></td><td class='msgd'>{$messages[$i][3]}<br><span class=\"msg_petit\"> [$date] {$messages[$i][1]}{$messages[$i][0]}</span></td></tr>";
+                } else {
+                    echo "<tr><td class='msgg'>{$messages[$i][3]}<br><span class=\"msg_petit\">[$date] {$messages[$i][1]}{$messages[$i][0]}</span><br></td><td></td></tr>";
+                }
+                echo "<span class=\"msg_cb\"></span>";
             }
             if ($messages[0][4] == $_SESSION['id']) {
                 $destinataire = $messages[0][5];
@@ -29,7 +37,7 @@
         } else {
             echo "Aucun message pour le moment.";
         }
-        echo "</p>
+        echo "</table>
             </div>";
         echo "
 
