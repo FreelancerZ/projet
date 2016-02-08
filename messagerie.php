@@ -15,7 +15,7 @@
     <nav>
 
     </nav>
-    <script type="text/javascript"src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript"src="inc/jquery-latest.js"></script>
     <script type="text/javascript">
         function actualise_div() {
             $(document).ready(function() {
