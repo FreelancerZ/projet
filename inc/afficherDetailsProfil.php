@@ -43,6 +43,22 @@ function afficherDetailsProfil($idUser) {
     if ($_SESSION['id'] == $idUser) {
         echo "<div><a href=\"editionprofil.php\">Modifier ces informations</a></div></div>";
     }
+	
+	// si l'utilisateur est un admin, il peut le bannir
+	if ($_SESSION['estAdmin'] == 1) {
+		 echo "<div><a href=\"banuser.php?p={$idUser}\">Bannir cet utilisateur</a></div></div>";
+	}
+}
+
+function afficherBanUser($idUser) {
+	echo "
+		<form method=\"post\" action=\"banuser.php\">
+			Motif :<br />
+			<textarea name=\"raison\" ></textarea>
+			<input name=\"idban\" type=\"hidden\" value=\"{$idUser}\" />
+			<input value=\"Bannir\" type=\"submit\" />
+		</form>
+	";
 }
 ?>
 
