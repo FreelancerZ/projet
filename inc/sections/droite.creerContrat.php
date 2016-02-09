@@ -32,7 +32,7 @@
 								<label for="description">Description détaillée : </label><br>
 							</th>
 							<td>
-								<textarea placeholder="..." rows="15" cols="80" style="background-color: #f2f2f2;" name="desc"></textarea><br>
+								<textarea id="markItUp" placeholder="..." rows="15" cols="80" style="background-color: #f2f2f2;" name="desc"></textarea><br>
 							</td>
 						</tr>
 						<tr>
@@ -95,7 +95,7 @@
     // You can add content from anywhere in your page
     // $.markItUp( { Settings } );
     $('.add').click(function() {
-        $('#markItUp').markItUp('insert',
+        $('textarea').markItUp('insert',
             {   openWith:'<opening tag>',
             closeWith:'<\/closing tag>',
             placeHolder:"New content"
@@ -108,10 +108,10 @@
     // $(textarea).markItUpRemove();
     $('.toggle').click(function() {
         if ($("#markItUp.markItUpEditor").length === 1) {
-            $("#markItUp").markItUp('remove');
+            $("textarea").markItUp('remove');
             $("span", this).text("get markItUp! back");
         } else {
-            $('#markItUp').markItUp(mySettings);
+            $('textarea').markItUp(mySettings);
             $("span", this).text("remove markItUp!");
         }
         return false;
