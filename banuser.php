@@ -8,8 +8,8 @@ if (!isset($_SESSION['nom'])) {
 
 if (isset($_POST['raison'])) {
 	require "inc/bannir.php";
-    $msg = bannir($_POST['idban'], htmlspecialchars($_POST['raison']));
-	header("location:index.php");
+    bannir($_POST['idban'], htmlspecialchars($_POST['raison']));
+	echo "<meta http-equiv=\"refresh\" content=\"1; URL=index.php\">";
 }
 
 include "inc/head.html";

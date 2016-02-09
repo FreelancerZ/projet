@@ -56,7 +56,7 @@ function afficherBanUser($idUser) {
 			Motif :<br />
 			<textarea name=\"raison\" ></textarea>
 			<input name=\"idban\" type=\"hidden\" value=\"{$idUser}\" />
-			<input value=\"Bannir\" type=\"submit\" onclick='alert(\"Utilisateur banni avec succès !\")' />
+			<input value=\"Bannir\" type=\"submit\" />
 		</form>
 	";
 }
