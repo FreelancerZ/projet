@@ -173,6 +173,8 @@ function afficherDetailsContrats($idContrat) {
 		} else if ($_SESSION['id'] == $contrats[14] && $etat == 1) {
 			// Seul l'auteur du contrat peut y mettre fin.
 			echo "<a href=\"terminerContrat.php?c={$contrats[0]}\" onclick=\"return window.confirm('Le contrat va se terminer, cette action est irréversible. Voulez vous continuer ?.')\"><div>Mettre fin au contrat</div></a>";
+		} if ($_SESSION['estAdmin'] == 1) {
+			echo "<a href='censurer.php?c={$contrats[0]}' onclick='return window.confirm(\"Vous êtes sur le point de censurer ce contrat, cette action est irréversible.Continuer ?\");'>Censurer ce contrat</a>";
 		}
 
 		echo "</div>";
