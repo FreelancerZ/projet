@@ -15,6 +15,9 @@ function afficherDetailsProfil($idUser) {
 	// Si l'utilisateur est banni, on affiche une information
 	if (estBanni($idUser)) {
 		echo "<p id=\"message\">Cet utilisateur est banni !</p>";
+		if ($_SESSION['estAdmin'] == 1) {
+			echo "<div><a href=\"debanuser.php?p={$idUser}\">Voulez-vous le débannir ?</a></div>";
+		}
 	}
        
 	if ($_SESSION['id'] != $idUser) {   
@@ -65,6 +68,15 @@ function afficherBanUser($idUser) {
 			<textarea name=\"raison\" ></textarea>
 			<input name=\"idban\" type=\"hidden\" value=\"{$idUser}\" />
 			<input value=\"Bannir\" type=\"submit\" />
+		</form>
+	";
+}
+
+function afficherDeBanUser($idUser) {
+	echo "
+		<form method=\"post\" action=\"debanuser.php\">
+			<input name=\"idban\" type=\"hidden\" value=\"{$idUser}\" />
+			<input name=\"deban\" value=\"Voulez-vous vraiment le débannir ?\" type=\"submit\" />
 		</form>
 	";
 }
