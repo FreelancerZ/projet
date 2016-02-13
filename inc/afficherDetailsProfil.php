@@ -5,11 +5,17 @@
  */
 function afficherDetailsProfil($idUser) {
 	require "recupDetailsProfil.php";
+	require "bannir.php";	
 	
 	$tab = recupDetailsProfil($idUser);
 	
 	// Affichage des données
 	echo "<div class=\"profil_infos\">";
+	
+	// Si l'utilisateur est banni, on affiche une information
+	if (estBanni($idUser)) {
+		echo "<p id=\"message\">Cet utilisateur est banni !</p>";
+	}
        
 	if ($_SESSION['id'] != $idUser) {   
 		// Si l'utilisateur consulte son propre profil on n'affiche pas la photo (trop surchargé, déja présente dans la partie gauche)
@@ -43,10 +49,12 @@ function afficherDetailsProfil($idUser) {
     if ($_SESSION['id'] == $idUser) {
         echo "<div><a href=\"editionprofil.php\">Modifier ces informations</a></div></div>";
     }
-	
+
 	// si l'utilisateur est un admin, il peut le bannir
-	if ($_SESSION['estAdmin'] == 1) {
-		 echo "<div><a href=\"banuser.php?p={$idUser}\">Bannir cet utilisateur</a></div></div>";
+	if ($_SESSION['id'] != $idUser && $_SESSION['estAdmin'] == 1) {
+		if (estBannisable($idUser)) {
+			echo "<div><a href=\"banuser.php?p={$idUser}\">Bannir cet utilisateur</a></div></div>";
+		}
 	}
 }
 

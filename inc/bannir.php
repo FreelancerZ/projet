@@ -48,4 +48,44 @@
 			mail($destinataire, $sujet, $contenu, $entete) ; // Envoi du mail
 		}
 	}
+	
+	function estBanni($idUser) {
+	    include_once "bd/bdd.php";
+		
+		// connexion à la BDD
+		$bdd = bdd();
+		
+		$sql = "SELECT user_banni FROM users WHERE user_id = :id";
+		$req = $bdd->prepare($sql);
+		$req->bindParam(':id', $idUser);
+
+		$req->execute();
+		$data = $req->fetch();
+		
+		if ($data['user_banni'] == 1) {
+			return true;
+		}	// else
+		
+		return false;
+	}
+	
+	function estBannisable($idUser) {
+	    include_once "bd/bdd.php";
+		
+		// connexion à la BDD
+		$bdd = bdd();
+		
+		$sql = "SELECT user_admin, user_banni FROM users WHERE user_id = :id";
+		$req = $bdd->prepare($sql);
+		$req->bindParam(':id', $idUser);
+
+		$req->execute();
+		$data = $req->fetch();
+		
+		if ($data['user_admin'] == 1 || $data['user_banni'] == 1) {
+			return false;
+		}	// else
+		
+		return true;
+	}
 ?>
