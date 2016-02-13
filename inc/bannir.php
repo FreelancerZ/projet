@@ -136,4 +136,40 @@
 			mail($destinataire, $sujet, $contenu, $entete) ; // Envoi du mail
 		}
 	}
+	
+	function avertir($idUser, $raison) {
+	    include_once "bd/bdd.php";
+		
+		// connexion à la BDD
+		$bdd = bdd();
+
+		// récupération du destinataire
+		$sql2 = "SELECT user_email, user_admin FROM users WHERE user_id = :id";
+		$req2 = $bdd->prepare($sql2);
+		$req2->bindParam(':id', $idUser);
+
+		$req2->execute();
+		$data = $req2->fetch();
+		$destinataire = $data['user_email'];
+
+		echo "<script>window.alert('L\'avertissement a été envoyé');</script>";
+
+		// envoi du mail
+		$sujet = "[Freelancerz] : Avertissement !";
+		$entete = "From: noreply@freelancerZ.com";
+
+		$contenu = 'Bonjour,
+
+		Un administrateur du site vous a envoyé un avertissement :
+		
+		' . $raison . '
+
+		Cordialement, l\'équipe d\'administration.
+
+		---------------
+		Ceci est un mail automatique, Merci de ne pas y répondre.';
+
+
+		mail($destinataire, $sujet, $contenu, $entete) ; // Envoi du mail
+	}
 ?>

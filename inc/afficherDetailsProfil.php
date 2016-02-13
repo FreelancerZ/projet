@@ -56,7 +56,8 @@ function afficherDetailsProfil($idUser) {
 	// si l'utilisateur est un admin, il peut le bannir
 	if ($_SESSION['id'] != $idUser && $_SESSION['estAdmin'] == 1) {
 		if (estBannisable($idUser)) {
-			echo "<div><a href=\"banuser.php?p={$idUser}\">Bannir cet utilisateur</a></div></div>";
+			echo "<div><a href=\"banuser.php?p={$idUser}\">Bannir cet utilisateur</a></div><br />";
+			echo "<div><a href=\"avertissement.php?p={$idUser}\">Envoyer un avertissement à cet utilisateur</a></div></div>";
 		}
 	}
 }
@@ -77,6 +78,17 @@ function afficherDeBanUser($idUser) {
 		<form method=\"post\" action=\"debanuser.php\">
 			<input name=\"idban\" type=\"hidden\" value=\"{$idUser}\" />
 			<input name=\"deban\" value=\"Voulez-vous vraiment le débannir ?\" type=\"submit\" />
+		</form>
+	";
+}
+
+function afficherAvertissement($idUser) {
+	echo "
+		<form method=\"post\" action=\"avertissement.php\">
+			Message :<br />
+			<textarea name=\"raison\" ></textarea>
+			<input name=\"idban\" type=\"hidden\" value=\"{$idUser}\" />
+			<input value=\"Envoyer l'avertissement\" type=\"submit\" />
 		</form>
 	";
 }
