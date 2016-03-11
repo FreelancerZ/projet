@@ -16,6 +16,19 @@ function inscrire($infos) {
         }
     }
     extract($infos);
+
+    // On teste si le pseudo ou l'email existe déjà
+    require_once "inc/bd/bdd.php";
+    $bdd = bdd();
+
+    $req = $bdd->prepare("SELECT COUNT(*) AS nb FROM users WHERE user_email = :email OR user_pseudo = :pseudo");
+    $req->bindParam(":email", $email);
+    $req->bindParam(":pseudo", $pseudo);
+    $req->execute();
+    if ($req->fetch()["nb"] != 0) {
+        return "<p id='message'>Ce pseudonyme ou cette adresse mail est déjà utilisée.</p>";
+    }
+
 	
     // On teste si la date est valide
     if (!(is_numeric($jour) && is_numeric($mois) && is_numeric($an)) || !checkdate($mois, $jour, $an)) {
@@ -42,7 +55,7 @@ function inscrire($infos) {
     // Génération d'une clé pour le lien de validation
     $cle = md5(microtime(TRUE)*100000);
 
-	$req = $bdd->prepare("INSERT INTO users(user_nom, user_prenom, user_pseudo, user_password, user_email, user_naissance, user_inscription, user_etat, user_cle) VALUES(:nom,:prenom,:pseudo,:mdp,:email,:naissance,:inscription,0,:cle)");
+	$req = $bdd->prepare("INSERT INTO users(user_nom, user_prenom, user_pseudo, user_password, user_email, user_naissance, user_inscription, user_etat, user_cle, user_admin, user_banni) VALUES(:nom,:prenom,:pseudo,:mdp,:email,:naissance,:inscription,0,:cle, 0, 0)");
 	$req->bindParam(":nom", $infos["nom"]);
 	$req->bindParam(":prenom", $infos["prenom"]);
 	$req->bindParam(":pseudo", $infos["pseudo"]);
@@ -65,7 +78,7 @@ function inscrire($infos) {
     Pour activer votre compte, veuillez cliquer sur le lien ci dessous
     ou copier/coller dans votre navigateur internet.
 
-    http://127.0.0.1/freelance/inc/validation.php?email='.urldecode($email).'&cle='.urlencode($cle).'
+    http://freelancerz.pe.hu/inc/validation.php?email='.urldecode($email).'&cle='.urlencode($cle).'
 
 
     ---------------
