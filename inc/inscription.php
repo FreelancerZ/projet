@@ -16,6 +16,11 @@ function inscrire($infos) {
         }
     }
     extract($infos);
+	
+	// On vérifie si les CGU sont accéptées
+	if (!isset($cgu)) {
+		return "<p id=\"message\">Vous devez accepter les CGU pour vous inscrire.</p>";
+	}
 
     // On teste si le pseudo ou l'email existe déjà
     require_once "inc/bd/bdd.php";
