@@ -191,6 +191,11 @@ nav {
 	word-spacing:0em;
 	width:67%;
 }
+.centerpart {
+	float:right;
+	word-spacing:0em;
+	width:100%;
+}
 .head_div {
 
 	text-indent:10px;
