@@ -77,7 +77,7 @@ if (isset($_POST) && !empty($_POST)) {
 					<p>Confirmation du mot de passe : *<br></p>
 					<input class="text" type="password" name="mdpConf"><br><br>
 					
-					<input type="checkbox" name="cgu"> J'accepte les <a href="/cgu.php" alt="cgu">CGU</a> de FreelancerZ<br><br>
+					<input type="checkbox" name="cgu"> J'accepte les <a href="cgu.php" alt="cgu">CGU</a> de FreelancerZ<br><br>
 					<input class="btn" type="submit" value="S'INSCRIRE">
 					<p id="subtitle">Vous avez déja un compte ? &nbsp &nbsp &nbsp <a href="connexion.php">Se connecter</a></p><p><?php echo $message; ?></p>
 				</form>
