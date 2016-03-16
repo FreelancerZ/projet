@@ -11,6 +11,8 @@
     }
 
     function afficherConversation($conv) {
+        // Clé pour traduire
+        $key = "AIzaSyAwr2gVyEIZtRz7p7znc91TjqYBjxvviD4";
         require_once "recupConversations.php";
         $messages = recupConversation($conv);
         $destinataire = 0;
@@ -25,7 +27,13 @@
                 if ($_SESSION['id'] == $messages[$i][4]) {
                     echo "<tr><td></td><td class='msgd'>{$messages[$i][3]}<br><span class=\"msg_petit\"> [$date] {$messages[$i][1]}{$messages[$i][0]}</span></td></tr>";
                 } else {
-                    echo "<tr><td class='msgg'>{$messages[$i][3]}<br><span class=\"msg_petit\">[$date] {$messages[$i][1]}{$messages[$i][0]}</span><br></td><td></td></tr>";
+                    echo "<tr><td class='msgg' id=\"toTrad\">{$messages[$i][3]}<br><span class=\"msg_petit\">[$date] {$messages[$i][1]}{$messages[$i][0]}</span><br>
+                           Traduire
+                           <button onclick=\"translate('{$messages[$i][3]}', $i, 'en')\">anglais</button>
+                           <button onclick=\"translate('{$messages[$i][3]}', $i, 'fr')\">français</button>
+                           <button onclick=\"translate('{$messages[$i][3]}', $i, 'de')\">allemand</button>
+                           <button onclick=\"translate('{$messages[$i][3]}', $i, 'es')\">espagnol</button>
+                           <span id=\"translated$i\"></span></td><td></td></tr>";
                 }
                 echo "<span class=\"msg_cb\"></span>";
             }
@@ -46,5 +54,16 @@
                 <input type='hidden' name='u2' value='$destinataire'>
                 <input type='submit' value='Envoyer'>
             </form>
+
         ";
+        ?>
+        <script>
+            function translate(texte, i, lang) {
+                // On va charger la traduction
+                $(document).ready(function() {
+                    $('#translated'+i).load('translate.php?t='+texte+'&lang='+lang);
+                });
+            }
+        </script>
+<?php
     }

@@ -22,7 +22,7 @@
                 $('#messages').load('messagerie.php?m=<?php echo $_GET['m'];?> #messages');
             });
         }
-        setInterval("actualise_div();", 5000);
+        setInterval("actualise_div();", 50000);
     </script>
     <div class="corps">
 
