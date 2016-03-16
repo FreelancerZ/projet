@@ -14,13 +14,6 @@ function afficherEditionProfil() {
 	<form class=\"form_edition_profil\" action=\"profil.php\" method=\"post\" enctype=\"multipart/form-data\">
 		<table>
 			<tr>
-				<td id=\"formprofil_lbl\">Pseudonyme : * </td>
-				<td><input class=\"text\" type=\"text\" name=\"pseudo\"  value=\"".$tab2[13]."\"/></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr><td>&nbsp</td></tr>
-			<tr>
 				<td id=\"formprofil_lbl\">Avatar : </td>
 				<td><input id=\"avatar\" type=\"file\" name=\"avatar\" /></td>
 				<td></td>
@@ -28,23 +21,10 @@ function afficherEditionProfil() {
 			</tr>
 			<tr><td>&nbsp</td></tr>
 			<tr>
-				<td id=\"formprofil_lbl\">Nom : * </td>
-				<td><input class=\"text\" type=\"text\" name=\"nom\" value=\"".$tab2[0]."\"/></td>
-				<td><input id=\"cbx\" class=\"text\" type=\"checkbox\" name=\"prenomPv\" /></td>
-				<td>privé</td>
-			</tr>
-			<tr>
-				<td id=\"formprofil_lbl\">Prenom : * </td>
-				<td><input class=\"text\" type=\"text\" name=\"prenom\"  value=\"".$tab2[1]."\"/></td>
-				<td><input id=\"cbx\" class=\"text\" type=\"checkbox\" name=\"prenomPv\" /></td>
-				<td>privé</td>
-			</tr>
-			<tr><td>&nbsp</td></tr>
-			<tr>
 				<td id=\"formprofil_lbl\">Ville :</td>
 				<td><input class=\"text\" type=\"text\" name=\"ville\"  value=\"".$tab2[2]."\"/></td>
-				<td><input id=\"cbx\" class=\"text\" type=\"checkbox\" name=\"villePv\" /></td>
-				<td>privé</td>
+				<td></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td id=\"formprofil_lbl\">Adresse :</td>
@@ -56,14 +36,14 @@ function afficherEditionProfil() {
 			<tr>
 				<td id=\"formprofil_lbl\">Code postal :</td>
 				<td><input class=\"text\" type=\"text\" name=\"cp\"  value=\"".$tab2[4]."\"/></td>
-				<td><input id=\"cbx\" class=\"text\" type=\"checkbox\" name=\"cpPv\" /></td>
-				<td>privé</td>
+				<td></td>
+				<td></td>
 			</tr>
 			<tr>
-				<td id=\"formprofil_lbl\">Compétences : * </td>
+				<td id=\"formprofil_lbl\">Compétences :</td>
 				<td><input class=\"text\" type=\"text\" name=\"competences\"  value=\"".$tab2[7]."\"/></td>
-				<td><input id=\"cbx\" class=\"text\" type=\"checkbox\" name=\"competencesPv\" /></td>
-				<td>privé</td>
+				<td></td>
+				<td></td>
 			</tr>
 			<tr><td>&nbsp</td></tr>
 			<tr>

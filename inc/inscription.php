@@ -53,14 +53,27 @@ function inscrire($infos) {
         return $message;
     }
 
-    // Si tout est ok, on contacte la BD et on enregistre le nouvel user
+    /* *** Si tout est ok, on contacte la BD et on enregistre le nouvel user *** */
     $bdd = bdd();
     $mdp = md5($mdp);
 
     // Génération d'une clé pour le lien de validation
     $cle = md5(microtime(TRUE)*100000);
 
+	// Insertion dans users
 	$req = $bdd->prepare("INSERT INTO users(user_nom, user_prenom, user_pseudo, user_password, user_email, user_naissance, user_inscription, user_etat, user_cle, user_admin, user_banni) VALUES(:nom,:prenom,:pseudo,:mdp,:email,:naissance,:inscription,0,:cle, 0, 0)");
+	$req->bindParam(":nom", $infos["nom"]);
+	$req->bindParam(":prenom", $infos["prenom"]);
+	$req->bindParam(":pseudo", $infos["pseudo"]);
+	$req->bindParam(":mdp", $mdp);
+	$req->bindParam(":email", $infos["email"]);
+	$req->bindParam(":naissance", $infos["naissance"]);
+	$req->bindParam(":inscription", $infos["inscription"]);
+	$req->bindParam(":cle", $cle);
+    $req->execute();
+	
+	// Insertion dans users_privee
+	$req = $bdd->prepare("INSERT INTO users_privee(user_nom, user_prenom, user_pseudo, user_password, user_email, user_naissance, user_inscription, user_etat, user_cle, user_admin, user_banni) VALUES(:nom,:prenom,:pseudo,:mdp,:email,:naissance,:inscription,0,:cle, 0, 0)");
 	$req->bindParam(":nom", $infos["nom"]);
 	$req->bindParam(":prenom", $infos["prenom"]);
 	$req->bindParam(":pseudo", $infos["pseudo"]);

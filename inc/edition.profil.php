@@ -24,9 +24,8 @@ function editerProfil($tab) {
 	$bdd = bdd();
 
 	// enregistrement des modifications dans la BDD privée
-	$sql = "UPDATE users_privee SET user_pseudo = :pseudo, user_ville = :ville, user_adresse = :adresse, user_cp = :cp, user_competences = :competences, user_site1 = :site1, user_site2 = :site2, user_site3 = :site3, user_site4 = :site4, user_site5 = :site5 WHERE user_id = :id";
+	$sql = "UPDATE users_privee SET user_ville = :ville, user_adresse = :adresse, user_cp = :cp, user_competences = :competences, user_site1 = :site1, user_site2 = :site2, user_site3 = :site3, user_site4 = :site4, user_site5 = :site5 WHERE user_id = :id";
 	$req = $bdd->prepare($sql);
-	$req->bindParam(':pseudo',$tab['pseudo']);
 	$req->bindParam(':ville',$tab['ville']);
 	$req->bindParam(':adresse',$tab['adresse']);
 	$req->bindParam(':cp',$tab['cp']);
@@ -47,9 +46,8 @@ function editerProfil($tab) {
 	$req->execute();
 
 	// enregistrement des modifications dans la BDD public
-	$sql = "UPDATE users SET user_pseudo = :pseudo, user_ville = :ville, user_adresse = :adresse, user_cp = :cp, user_competences = :competences, user_site1 = :site1, user_site2 = :site2, user_site3 = :site3, user_site4 = :site4, user_site5 = :site5 WHERE user_id = :id";
+	$sql = "UPDATE users SET user_ville = :ville, user_adresse = :adresse, user_cp = :cp, user_competences = :competences, user_site1 = :site1, user_site2 = :site2, user_site3 = :site3, user_site4 = :site4, user_site5 = :site5 WHERE user_id = :id";
 	$req = $bdd->prepare($sql);
-	$req->bindParam(':pseudo',$tab['pseudo']);
 	if(isset($tab['villePv'])) {
 		$req->bindParam(':ville',$private);
 	} else {
@@ -105,8 +103,6 @@ function editerProfil($tab) {
 
 	$req->execute();
 
-	$_SESSION['pseudo'] = $tab['pseudo'];
-
     return $tab; //var_dump($tab)
 }
 
@@ -123,13 +119,20 @@ function editerMdp($userMdp,$userMdpConf) {
 		// connxion à la BDD
 		$bdd = bdd();
 
-		// enregistrement des modifications dans la BDD
+		// enregistrement des modifications dans users
 		$sql = "UPDATE users SET user_password = :mdp WHERE user_id = :id";
 		$req = $bdd->prepare($sql);
 		$req->bindParam(':mdp',$mdpBD);
 		$req->bindParam('id',$_SESSION['id']);
-
 		$req->execute();
+		
+		// enregistrement des modifications dans users_privee
+		$sql = "UPDATE users_privee SET user_password = :mdp WHERE user_id = :id";
+		$req = $bdd->prepare($sql);
+		$req->bindParam(':mdp',$mdpBD);
+		$req->bindParam('id',$_SESSION['id']);
+		$req->execute();
+		
 		return "<p id=\"message_ok\">Le mot de passe a bien été modifié.</p>";
 	} else {
 		return "<p id=\"message\">Les deux mots de passes ne correspondent pas. Le mot de passe n'a pas été modifié</p>";
@@ -146,12 +149,18 @@ function editerEmail($userEmail) {
 	// connexion à la BDD
 	$bdd = bdd();
 
-	// enregistrement des modifications dans la BDD
+	// enregistrement des modifications dans users
 	$sql = "UPDATE users SET user_email = :mail WHERE user_id = :id";
 	$req = $bdd->prepare($sql);
 	$req->bindParam(':mail',$userEmail);
 	$req->bindParam('id',$_SESSION['id']);
-
+	$req->execute();
+	
+	// enregistrement des modifications dans users_privee
+	$sql = "UPDATE users_privee SET user_email = :mail WHERE user_id = :id";
+	$req = $bdd->prepare($sql);
+	$req->bindParam(':mail',$userEmail);
+	$req->bindParam('id',$_SESSION['id']);
 	$req->execute();
 
 	return "<p id=\"message_ok\">Le mail a bien été modifié.</p>";
