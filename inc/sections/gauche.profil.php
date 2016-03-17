@@ -5,7 +5,7 @@
 		</header>
 			<div id="btn_deco">
 				<a href="inc/deco.php" >DECONNEXION</a>
-			</div>		
+			</div>
 		<article>
 			<?php
 				if ($_SESSION['actif'] == 0) {
@@ -31,10 +31,10 @@
 				</tr>
 				<tr>
 					<td colspan="2" id="contenu">
-													
+
 					<a href="profil.php">Profil</a><br>
 					<a href="parametres.php">Paramètres</a><br>
-					
+
 					</td>
 				</tr>
 				<tr  id="cat">
@@ -42,7 +42,6 @@
 				</tr>
 				<tr>
 					<td colspan="2" id="contenu">
-                        <a href="index.php">Tous</a><br>
                         <a href="recherche.php">Rechercher</a><br>
                         <a href="create.php">Proposer</a><br>
                         <a href="mes-propositions.php">Mes propositions</a><br>
@@ -59,9 +58,9 @@
 					<td colspan="2" id="contenu">
 					<a href="">Autre</a>
 					</td>
-				</tr>-->				
+				</tr>-->
 			</table>
-			
+
 			<!-- Version smartphone (else display:none) -->
 			<table class="profil_smartphone">
 				<tr>
@@ -83,12 +82,11 @@
 					<!--<th id="categorie">Autres</th>-->
 				</tr>
 				<tr>
-					<td id="contenu">								
+					<td id="contenu">
 						<a href="profil.php">Profil</a><br>
-						<a href="parametres.php">Paramètres</a><br>					
+						<a href="parametres.php">Paramètres</a><br>
 					</td>
 					<td id="contenu">
-                        <a href="index.php">Tous</a><br>
 						<a href="recherche.php">Rechercher</a><br>
 						<a href="create.php">Proposer</a><br>
 						<a href="mes-propositions.php">Mes propositions</a><br>
@@ -100,7 +98,7 @@
 					<!--<td id="contenu">
 						<a href="">Autre</a>
 					</td>-->
-				</tr>					
+				</tr>
 			</table>
 		</article>
 	</div>
