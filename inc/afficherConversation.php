@@ -15,7 +15,7 @@
         $key = "AIzaSyAwr2gVyEIZtRz7p7znc91TjqYBjxvviD4";
         require_once "recupConversations.php";
         $messages = recupConversation($conv);
-        $destinataire = recupDestinataire($conv);
+        $destinataire = 0;
         echo "<div id='messages'>
                 <table class=\"msg\">
                 <tr>
@@ -37,7 +37,11 @@
                 }
                 echo "<span class=\"msg_cb\"></span>";
             }
-            
+            if ($messages[0][4] == $_SESSION['id']) {
+                $destinataire = $messages[0][5];
+            } else {
+                $destinataire = $messages[0][4];
+            }
         } else {
             echo "Aucun message pour le moment.";
         }
