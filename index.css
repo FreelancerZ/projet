@@ -15,13 +15,14 @@
 @font-face {
     font-family: "FRAMDCN";
 	src : url('fonts/FRAMDCN.eot');
-	src : url('fonts/FRAMDCN.eot?') format('eot'), url('fonts/FRAMDCN.ttf') format('truetype');
+	src : url('fonts/FRAMDCN.eot?') format('eot'), url('fonts/FRAMDCN.TTF') format('truetype');
 }
 
 @font-face {
     font-family: "NIAGSOL";
+    font-family: "NIAGSOL";
 	src : url('fonts/NIAGSOL.eot');
-	src : url('fonts/NIAGSOL.eot?') format('eot'), url('fonts/NIAGSOL.ttf') format('truetype');
+	src : url('fonts/NIAGSOL.eot?') format('eot'), url('fonts/NIAGSOL.TTF') format('truetype');
 }
 
 
