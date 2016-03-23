@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 23 Mars 2016 à 11:25
+-- Généré le :  Mer 23 Mars 2016 à 17:39
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_banni` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_pseudo` (`user_pseudo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `users`
@@ -164,7 +164,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`user_id`, `user_nom`, `user_prenom`, `user_pseudo`, `user_ville`, `user_adresse`, `user_cp`, `user_password`, `user_email`, `user_naissance`, `user_inscription`, `user_competences`, `user_site1`, `user_site2`, `user_site3`, `user_site4`, `user_site5`, `user_etat`, `user_cle`, `user_admin`, `user_banni`) VALUES
 (1, 'Clément', 'Hugo', 'Sydher', 'Trespoux-Rassiels', 'Privée', '46090', '8dbdda48fb8748d6746f1965824e966a', 'hugo.clement@iut-rodez.fr', NULL, NULL, 'Java, PHP, HTML', 'https://www.facebook.com/hugo.clement.5', '', '', '', NULL, 1, '9e627c30ccf3cdc481fc8d496244badc', 1, 0),
 (2, 'Guillaume', 'Bernard', 'crwup', '', '', '', '8dbdda48fb8748d6746f1965824e966a', 'guillaume.bernard@iut-rodez.fr', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 1, 'e83ddaaad0aa2eec708c026dee11e7c4', 1, 0),
-(3, 'Fraysse', 'Marcel', 'frayssinet', '', '', '', '8dbdda48fb8748d6746f1965824e966a', 'fraysse.marcel@yopmail.com', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 1, '4b3d732c898ec276d91b4082d6138eea', 0, 0);
+(3, 'Fraysse', 'Marcel', 'frayssinet', '', '', '', '8dbdda48fb8748d6746f1965824e966a', 'fraysse.marcel@yopmail.com', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 1, '4b3d732c898ec276d91b4082d6138eea', 0, 0),
+(4, 'Mathieu', 'Jérome', 'Jerome', '', '', '', '8dbdda48fb8748d6746f1965824e966a', 'j.mathieu@mail.com', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 1, 'fb872e8cb032b48c3fc6adaa7345b086', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -196,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `users_privee` (
   `user_banni` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_pseudo` (`user_pseudo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `users_privee`
@@ -205,7 +206,8 @@ CREATE TABLE IF NOT EXISTS `users_privee` (
 INSERT INTO `users_privee` (`user_id`, `user_nom`, `user_prenom`, `user_pseudo`, `user_ville`, `user_adresse`, `user_cp`, `user_password`, `user_email`, `user_naissance`, `user_inscription`, `user_competences`, `user_site1`, `user_site2`, `user_site3`, `user_site4`, `user_site5`, `user_etat`, `user_cle`, `user_admin`, `user_banni`) VALUES
 (1, 'Clément', 'Hugo', 'Sydher', 'Trespoux-Rassiels', '45 allées des Claousses', '46090', '8dbdda48fb8748d6746f1965824e966a', 'hugo.clement@iut-rodez.fr', NULL, NULL, 'Java, PHP, HTML', 'https://www.facebook.com/hugo.clement.5', '', '', '', NULL, 0, '9e627c30ccf3cdc481fc8d496244badc', 1, 0),
 (2, 'Guillaume', 'Bernard', 'crwup', '', '', '', '8dbdda48fb8748d6746f1965824e966a', 'guillaume.bernard@iut-rodez.fr', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, 'e83ddaaad0aa2eec708c026dee11e7c4', 0, 0),
-(3, 'Fraysse', 'Marcel', 'frayssinet', '', '', '', '8dbdda48fb8748d6746f1965824e966a', 'fraysse.marcel@yopmail.com', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '4b3d732c898ec276d91b4082d6138eea', 0, 0);
+(3, 'Fraysse', 'Marcel', 'frayssinet', '', '', '', '8dbdda48fb8748d6746f1965824e966a', 'fraysse.marcel@yopmail.com', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '4b3d732c898ec276d91b4082d6138eea', 0, 0),
+(4, 'Mathieu', 'Jérome', 'Jerome', '', '', '', '8dbdda48fb8748d6746f1965824e966a', 'j.mathieu@mail.com', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, 'fb872e8cb032b48c3fc6adaa7345b086', 0, 0);
 
 -- --------------------------------------------------------
 
