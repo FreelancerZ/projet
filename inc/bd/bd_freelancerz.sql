@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 17 Mars 2016 à 19:06
+-- Généré le :  Mer 23 Mars 2016 à 11:25
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -41,14 +41,16 @@ CREATE TABLE IF NOT EXISTS `contrat` (
   `contrat_fin_prevue` date DEFAULT NULL,
   `contrat_fin_reelle` date DEFAULT NULL,
   PRIMARY KEY (`contrat_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `contrat`
 --
 
 INSERT INTO `contrat` (`contrat_id`, `contrat_auteur`, `contrat_titre`, `contrat_theme`, `contrat_etat`, `contrat_description`, `contrat_montant`, `contrat_competences`, `contrat_publication`, `contrat_debut_prevue`, `contrat_debut_reel`, `contrat_fin_prevue`, `contrat_fin_reelle`) VALUES
-(1, 1, 'Rendre responsive FreelancerZ', 'Web', 1, 'Je cherche quelqu''un pour rendre responsive ce site web.', 100, 'HTML, CSS, PHP', '2016-03-16', '2016-03-16', '2016-03-16', '2016-03-20', NULL);
+(1, 1, 'Rendre responsive FreelancerZ', 'Web', 1, 'Je cherche quelqu''un pour rendre responsive ce site web.', 100, 'HTML, CSS, PHP', '2016-03-16', '2016-03-16', '2016-03-16', '2016-03-20', NULL),
+(2, 2, 'Test', 'Web', 0, 'ceci est un contrat de test', 125, 'PHP', '2016-03-23', '2016-03-23', NULL, '2016-04-23', NULL),
+(3, 2, 'Dév', 'Android', 0, 'sdfghjklmùmlkhfdsqsdfghjk:l', 150, 'Android', '2016-03-23', '2016-03-23', NULL, '2016-04-23', NULL);
 
 -- --------------------------------------------------------
 
