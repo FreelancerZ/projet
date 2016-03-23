@@ -5,7 +5,7 @@
  */
 function afficherRecherche($rezRech) {
 	if ($rezRech == -1) {
-		echo '<div>&nbsp&nbsp&nbspAucun résultat.</div>';
+		// corps vide
 	} else {
 		for ($i=0; $i < sizeof($rezRech); $i++) {
 		   echo '
@@ -22,4 +22,3 @@ function afficherRecherche($rezRech) {
 	}
 }
 ?>
-
