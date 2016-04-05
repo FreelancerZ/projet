@@ -30,15 +30,15 @@
                 } else {
                     echo "<tr><td class='msgg' id=\"toTrad\">{$messages[$i][3]}<br><span class=\"msg_petit\">[$date] {$messages[$i][1]}{$messages[$i][0]}</span><br>
                            Traduire
-                           <button onclick=\"translate('{$messages[$i][3]}', $i, 'en')\">anglais</button>
-                           <button onclick=\"translate('{$messages[$i][3]}', $i, 'fr')\">français</button>
-                           <button onclick=\"translate('{$messages[$i][3]}', $i, 'de')\">allemand</button>
-                           <button onclick=\"translate('{$messages[$i][3]}', $i, 'es')\">espagnol</button>
-                           <span id=\"translated$i\"></span></td><td></td></tr>";
+                           <button onclick=\"translate('".urlencode($messages[$i][3])."', $i, 'en')\">anglais</button>
+                           <button onclick=\"translate('".urlencode($messages[$i][3])."', $i, 'fr')\">français</button>
+                           <button onclick=\"translate('".urlencode($messages[$i][3])."', $i, 'de')\">allemand</button>
+                           <button onclick=\"translate('".urlencode($messages[$i][3])."', $i, 'es')\">espagnol</button>
+                           <br><span id=\"translated$i\"></span></td><td></td></tr>";
                 }
                 echo "<span class=\"msg_cb\"></span>";
             }
-            
+
         } else {
             echo "Aucun message pour le moment.";
         }
